@@ -20,6 +20,11 @@
 - `isbn` (varchar)
 - `description` (text)
 - `status` (varchar) // valeurs possibles: 'wishlist', 'ordered', 'owned'
+- `price` (decimal)
+- `summary` (text)
+- `series` (varchar, nullable)
+- `volume_number` (int, nullable)
+- `volume_title` (varchar, nullable)
 
 ### Table `authors`
 - `id` (int, primary key)
@@ -29,6 +34,14 @@
 ### Table `book_authors`
 - `book_id` (int, foreign key)
 - `author_id` (int, foreign key)
+
+### Table `publishers`
+- `id` (int, primary key)
+- `name` (varchar)
+
+### Table `book_publishers`
+- `book_id` (int, foreign key)
+- `publisher_id` (int, foreign key)
 
 ## 3. Structure de l'API
 
@@ -44,10 +57,20 @@
         "isbn": "string",
         "description": "string",
         "status": "string", // valeurs possibles: 'wishlist', 'ordered', 'owned'
+        "price": "number",
+        "summary": "string",
+        "series": "string",
+        "volume_number": "number",
+        "volume_title": "string",
         "authors": [
             {
                 "first_name": "string",
                 "last_name": "string"
+            }
+        ],
+        "publishers": [
+            {
+                "name": "string"
             }
         ]
     }
@@ -64,11 +87,22 @@
             "isbn": "string",
             "description": "string",
             "status": "string",
+            "price": "number",
+            "summary": "string",
+            "series": "string",
+            "volume_number": "number",
+            "volume_title": "string",
             "authors": [
                 {
                     "id": 1,
                     "first_name": "string",
                     "last_name": "string"
+                }
+            ],
+            "publishers": [
+                {
+                    "id": 1,
+                    "name": "string"
                 }
             ]
         }
@@ -92,11 +126,22 @@
         "isbn": "string",
         "description": "string",
         "status": "owned",
+        "price": "number",
+        "summary": "string",
+        "series": "string",
+        "volume_number": "number",
+        "volume_title": "string",
         "authors": [
             {
                 "id": 1,
                 "first_name": "string",
                 "last_name": "string"
+            }
+        ],
+        "publishers": [
+            {
+                "id": 1,
+                "name": "string"
             }
         ]
     }
