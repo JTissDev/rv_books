@@ -1,5 +1,9 @@
 package com.jtissdev.rvbooks.repositories;
 
-public class PublisherRepository {
-    
+import com.jtissdev.rvbooks.models.Publisher;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PublisherRepository extends JpaRepository<Publisher, Integer> {
 }
