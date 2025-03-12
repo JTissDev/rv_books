@@ -3,14 +3,20 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Projet Metadata -->
-  <groupId>com.jtissdev.api</groupId>
-  <artifactId>rv_books</artifactId>
-  <version>1.0</version>
+  <groupId>com.jtissdev</groupId>
+  <artifactId>rvbooks</artifactId>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>JT Rv API Archetype</name>
-  <description>Archetype for creating APIs with DAO pattern and profile management</description>
-  <url>http://jtissdev.org/rv_books</url>
+  <name>rv_books</name>
+  <description>API de Gestion de Bibliothèque Privée</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.4</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
 
   <!-- Informations sur l'organisation -->
   <organization>
@@ -47,6 +53,7 @@
     <spring.boot.version>2.7.4</spring.boot.version>
     <mysql.connector.version>8.0.31</mysql.connector.version>
     <spring.boot.maven.plugin.version>2.7.4</spring.boot.maven.plugin.version>
+    <java.version>11</java.version>
   </properties>
 
   <!-- Dépendances -->
@@ -93,6 +100,13 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
       <version>${spring.boot.version}</version>
+    </dependency>
+
+    <!-- Lombok for reducing boilerplate code -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
