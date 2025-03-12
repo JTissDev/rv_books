@@ -10,6 +10,20 @@
 - `DELETE /books/{id}`: Supprimer un livre de la liste des livres.
 - `POST /books/{id}/move-to-owned`: Déplacer un livre à la liste des livres possédés.
 
+### Auteurs
+- `GET /authors`: Récupérer la liste des auteurs.
+- `POST /authors`: Ajouter un nouvel auteur.
+- `GET /authors/{id}`: Récupérer les détails d'un auteur spécifique.
+- `PUT /authors/{id}`: Mettre à jour les informations d'un auteur spécifique.
+- `DELETE /authors/{id}`: Supprimer un auteur de la liste des auteurs.
+
+### Éditeurs
+- `GET /publishers`: Récupérer la liste des éditeurs.
+- `POST /publishers`: Ajouter un nouvel éditeur.
+- `GET /publishers/{id}`: Récupérer les détails d'un éditeur spécifique.
+- `PUT /publishers/{id}`: Mettre à jour les informations d'un éditeur spécifique.
+- `DELETE /publishers/{id}`: Supprimer un éditeur de la liste des éditeurs.
+
 ## 2. Structure de la Base de Données
 
 ### Table `books`
@@ -145,4 +159,42 @@
             }
         ]
     }
+    ```
+
+#### Auteurs
+- **Requête POST /authors**
+    ```json
+    {
+        "first_name": "string",
+        "last_name": "string"
+    }
+    ```
+
+- **Réponse GET /authors**
+    ```json
+    [
+        {
+            "id": 1,
+            "first_name": "string",
+            "last_name": "string"
+        }
+    ]
+    ```
+
+#### Éditeurs
+- **Requête POST /publishers**
+    ```json
+    {
+        "name": "string"
+    }
+    ```
+
+- **Réponse GET /publishers**
+    ```json
+    [
+        {
+            "id": 1,
+            "name": "string"
+        }
+    ]
     ```
