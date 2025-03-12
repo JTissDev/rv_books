@@ -9,6 +9,7 @@
 - `PUT /books/{id}`: Mettre à jour les informations d'un livre spécifique.
 - `DELETE /books/{id}`: Supprimer un livre de la liste des livres.
 - `POST /books/{id}/move-to-owned`: Déplacer un livre à la liste des livres possédés.
+- `GET /books/search`: Rechercher des livres selon différents critères.
 
 ### Auteurs
 - `GET /authors`: Récupérer la liste des auteurs.
@@ -159,6 +160,50 @@
             }
         ]
     }
+    ```
+
+- **Requête GET /books/search**
+    ```json
+    {
+        "status": "string", // optionnel, valeurs possibles: 'wishlist', 'ordered', 'owned'
+        "author": "string", // optionnel, recherche par nom ou prénom de l'auteur
+        "publisher": "string", // optionnel, recherche par nom de l'éditeur
+        "title": "string", // optionnel, recherche par morceau de titre
+        "series": "string" // optionnel, recherche par nom de série
+    }
+    ```
+
+- **Réponse GET /books/search**
+    ```json
+    [
+        {
+            "id": 1,
+            "title": "string",
+            "genre": "string",
+            "published_date": "YYYY-MM-DD",
+            "isbn": "string",
+            "description": "string",
+            "status": "string",
+            "price": "number",
+            "summary": "string",
+            "series": "string",
+            "volume_number": "number",
+            "volume_title": "string",
+            "authors": [
+                {
+                    "id": 1,
+                    "first_name": "string",
+                    "last_name": "string"
+                }
+            ],
+            "publishers": [
+                {
+                    "id": 1,
+                    "name": "string"
+                }
+            ]
+        }
+    ]
     ```
 
 #### Auteurs
