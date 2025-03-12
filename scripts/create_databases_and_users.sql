@@ -3,7 +3,7 @@
 CREATE DATABASE rv_books_prod;
 CREATE DATABASE rv_books_dev;
 CREATE DATABASE rv_books_test;
-CREATE DATABASE show_db;
+CREATE DATABASE rv_books_show;
 
 -- Create users and grant permissions
 
@@ -21,7 +21,7 @@ GRANT SELECT ON rv_books_test.* TO 'JTissDev_test'@'localhost';
 
 -- Show user
 CREATE USER 'JTissDev_show'@'localhost' IDENTIFIED BY 'JTi55D3v_sh0w@p@55w0rd';
-GRANT SELECT ON show_db.* TO 'JTissDev_show'@'localhost';
+GRANT SELECT ON rv_books_show.* TO 'JTissDev_show'@'localhost';
 
 -- Apply changes
 FLUSH PRIVILEGES;

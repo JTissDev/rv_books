@@ -1,4 +1,4 @@
-USE rv_books;
+USE rv_books_dev;
 
 -- Insert test data
 INSERT INTO authors (first_name, last_name) VALUES ('John', 'Doe'), ('Jane', 'Smith');
