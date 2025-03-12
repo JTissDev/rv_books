@@ -25,6 +25,9 @@
 - `PUT /publishers/{id}`: Mettre à jour les informations d'un éditeur spécifique.
 - `DELETE /publishers/{id}`: Supprimer un éditeur de la liste des éditeurs.
 
+### Aide
+- `GET /help`: Obtenir la liste des requêtes possibles, la structure demandée et la structure de retour.
+
 ## 2. Structure de la Base de Données
 
 ### Table `books`
@@ -242,4 +245,53 @@
             "name": "string"
         }
     ]
+    ```
+
+#### Aide
+- **Requête GET /help**
+    ```json
+    {}
+    ```
+
+- **Réponse GET /help**
+    ```json
+    {
+        "endpoints": [
+            {
+                "method": "GET",
+                "path": "/books",
+                "description": "Récupérer la liste des livres",
+                "request": {},
+                "response": [
+                    {
+                        "id": 1,
+                        "title": "string",
+                        "genre": "string",
+                        "published_date": "YYYY-MM-DD",
+                        "isbn": "string",
+                        "description": "string",
+                        "status": "string",
+                        "price": "number",
+                        "summary": "string",
+                        "series": "string",
+                        "volume_number": "number",
+                        "volume_title": "string",
+                        "authors": [
+                            {
+                                "id": 1,
+                                "first_name": "string",
+                                "last_name": "string"
+                            }
+                        ],
+                        "publishers": [
+                            {
+                                "id": 1,
+                                "name": "string"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
     ```
