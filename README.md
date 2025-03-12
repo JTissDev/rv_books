@@ -28,10 +28,25 @@ RV Books est une application Spring Boot qui permet de gérer une bibliothèque 
 - application-prod.properties
 - application-test.properties
 - application-show.properties
-- Compilez et packagez l'application :
+
+3. Exécutez le script SQL pour créer la base de données et insérer des données de test :
+
+   ```sh
+   mysql -u root -p < scripts/setup_db.sql
+   ```
+
+4. Compilez et packagez l'application :
+
+   ```sh
+   mvn clean package
+   ```
 
 ## Exécution
 Pour exécuter l'application avec un profil spécifique (par exemple, dev), utilisez la commande suivante :
+
+```sh
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+```
 
 ## Utilisation
 L'API expose les endpoints suivants :
@@ -43,6 +58,7 @@ L'API expose les endpoints suivants :
 - DELETE /books/{id} : Supprime un livre par son ID
 - POST /books/{id}/moveToOwned : Déplace un livre vers le statut "owned"
 - GET /books/search : Recherche des livres par différents critères
+
 ## Contribuer
 Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou ouvrir une issue pour discuter des changements que vous souhaitez apporter.
 
