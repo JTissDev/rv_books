@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Projet Metadata -->
+  <groupId>com.jtissdev.api</groupId>
+  <artifactId>rv_books</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>JT Rv API Archetype</name>
+  <description>Archetype for creating APIs with DAO pattern and profile management</description>
+  <url>http://jtissdev.org/rv_books</url>
+
+  <!-- Informations sur l'organisation -->
+  <organization>
+    <name>JTissDevInfo</name>
+    <url>http://jtissdev.org</url>
+  </organization>
+
+  <!-- Informations sur le développeur -->
+  <developers>
+    <developer>
+      <id>jtissdev</id>
+      <name>Julien Tissier</name>
+      <email>jtissdev@gmail.com</email>
+      <roles>
+        <role>Architect</role>
+        <role>Developer</role>
+        <role>Project Owner</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <!-- Informations sur la licence -->
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <!-- Propriétés Maven -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.boot.version>2.7.4</spring.boot.version>
+    <mysql.connector.version>8.0.31</mysql.connector.version>
+    <spring.boot.maven.plugin.version>2.7.4</spring.boot.maven.plugin.version>
+  </properties>
+
+  <!-- Dépendances -->
+  <dependencies>
+    <!-- Spring Boot Web Starter -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+
+    <!-- Spring Boot Data JPA Starter -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+
+    <!-- MySQL Connector -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.connector.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- DbManager Library -->
+    <dependency>
+      <groupId>com.jtissdev.lib</groupId>
+      <artifactId>DbManager</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+    <!-- Spring Boot Test Starter -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <version>${spring.boot.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Spring Boot Actuator -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+  </dependencies>
+
+  <!-- Build Configuration -->
+  <build>
+    <plugins>
+      <!-- Plugin Maven Compiler -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>11</source>
+          <target>11</target>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin Spring Boot -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring.boot.maven.plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- Profils Maven -->
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <properties>
+        <spring.profiles.active>dev</spring.profiles.active>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <spring.profiles.active>prod</spring.profiles.active>
+      </properties>
+    </profile>
+    <profile>
+      <id>test</id>
+      <properties>
+        <spring.profiles.active>test</spring.profiles.active>
+        <database.url>jdbc:mysql://localhost:3306/test_db</database.url>
+        <database.username>test_user</database.username>
+        <database.password>test_password</database.password>
+      </properties>
+    </profile>
+    <profile>
+      <id>show</id>
+      <properties>
+        <spring.profiles.active>show</spring.profiles.active>
+        <database.url>jdbc:mysql://localhost:3306/show_db</database.url>
+        <database.username>show_user</database.username>
+        <database.password>show_password</database.password>
+      </properties>
+    </profile>
+  </profiles>
+</project>
