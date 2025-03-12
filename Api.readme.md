@@ -9,6 +9,21 @@
 - `PUT /books/{id}`: Mettre à jour les informations d'un livre spécifique.
 - `DELETE /books/{id}`: Supprimer un livre de la liste des livres.
 - `POST /books/{id}/move-to-owned`: Déplacer un livre à la liste des livres possédés.
+- `GET /books/search`: Rechercher des livres selon différents critères.
+
+### Auteurs
+- `GET /authors`: Récupérer la liste des auteurs.
+- `POST /authors`: Ajouter un nouvel auteur.
+- `GET /authors/{id}`: Récupérer les détails d'un auteur spécifique.
+- `PUT /authors/{id}`: Mettre à jour les informations d'un auteur spécifique.
+- `DELETE /authors/{id}`: Supprimer un auteur de la liste des auteurs.
+
+### Éditeurs
+- `GET /publishers`: Récupérer la liste des éditeurs.
+- `POST /publishers`: Ajouter un nouvel éditeur.
+- `GET /publishers/{id}`: Récupérer les détails d'un éditeur spécifique.
+- `PUT /publishers/{id}`: Mettre à jour les informations d'un éditeur spécifique.
+- `DELETE /publishers/{id}`: Supprimer un éditeur de la liste des éditeurs.
 
 ## 2. Structure de la Base de Données
 
@@ -145,4 +160,86 @@
             }
         ]
     }
+    ```
+
+- **Requête GET /books/search**
+    ```json
+    {
+        "status": "string", // optionnel, valeurs possibles: 'wishlist', 'ordered', 'owned'
+        "author": "string", // optionnel, recherche par nom ou prénom de l'auteur
+        "publisher": "string", // optionnel, recherche par nom de l'éditeur
+        "title": "string", // optionnel, recherche par morceau de titre
+        "series": "string" // optionnel, recherche par nom de série
+    }
+    ```
+
+- **Réponse GET /books/search**
+    ```json
+    [
+        {
+            "id": 1,
+            "title": "string",
+            "genre": "string",
+            "published_date": "YYYY-MM-DD",
+            "isbn": "string",
+            "description": "string",
+            "status": "string",
+            "price": "number",
+            "summary": "string",
+            "series": "string",
+            "volume_number": "number",
+            "volume_title": "string",
+            "authors": [
+                {
+                    "id": 1,
+                    "first_name": "string",
+                    "last_name": "string"
+                }
+            ],
+            "publishers": [
+                {
+                    "id": 1,
+                    "name": "string"
+                }
+            ]
+        }
+    ]
+    ```
+
+#### Auteurs
+- **Requête POST /authors**
+    ```json
+    {
+        "first_name": "string",
+        "last_name": "string"
+    }
+    ```
+
+- **Réponse GET /authors**
+    ```json
+    [
+        {
+            "id": 1,
+            "first_name": "string",
+            "last_name": "string"
+        }
+    ]
+    ```
+
+#### Éditeurs
+- **Requête POST /publishers**
+    ```json
+    {
+        "name": "string"
+    }
+    ```
+
+- **Réponse GET /publishers**
+    ```json
+    [
+        {
+            "id": 1,
+            "name": "string"
+        }
+    ]
     ```
