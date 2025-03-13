@@ -1,4 +1,3 @@
-
 -- Create databases
 CREATE DATABASE rv_books_prod;
 CREATE DATABASE rv_books_dev;
