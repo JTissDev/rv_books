@@ -44,12 +44,12 @@ public class BookController {
         return bookService.moveToOwned(id);
     }
 
-    @GetMapping("/search")
+   /*  @GetMapping("/search")
     public List<Book> searchBooks(@RequestParam(required = false) String status,
                                   @RequestParam(required = false) String author,
                                   @RequestParam(required = false) String publisher,
                                   @RequestParam(required = false) String title,
                                   @RequestParam(required = false) String series) {
         return bookService.searchBooks(status, author, publisher, title, series);
-    }
+    } */
 }

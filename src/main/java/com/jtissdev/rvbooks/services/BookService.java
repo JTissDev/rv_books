@@ -43,8 +43,8 @@ public class BookService {
         return null;
     }
 
-    public List<Book> searchBooks(String status, String author, String publisher, String title, String series) {
+    /* public List<Book> searchBooks(String status, String author, String publisher, String title, String series) {
         // Implémenter la logique de recherche ici
         return bookRepository.searchBooks(status, author, publisher, title, series);
-    }
+    } */
 }
