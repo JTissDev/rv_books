@@ -85,20 +85,6 @@ Fichier de configuration pour les paramètres de l'application, y compris la con
 Les tests unitaires et d'intégration pour l'application.
 - **AppTest.java** : Contient les tests pour l'application.
 
-## Configuration de la Base de Données
-
-La base de données sera configurée dans le fichier `application.properties` avec les paramètres de connexion SQL.
-
-Exemple de configuration :
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/rv_books
-spring.datasource.username=root
-spring.datasource.password=password
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
-```
-
 ## Exécution de l'Application
 
 Pour exécuter l'application, utilisez la commande suivante :

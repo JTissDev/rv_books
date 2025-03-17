@@ -1,175 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <!-- Projet Metadata -->
-  <groupId>com.jtissdev</groupId>
-  <artifactId>rvbooks</artifactId>
-  <version>1.0.0</version>
-  <packaging>jar</packaging>
+    <!-- Projet Metadata -->
+    <groupId>com.jtissdev</groupId>
+    <artifactId>rvbooks</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
 
-  <name>rv_books</name>
-  <description>API de Gestion de Bibliothèque Privée</description>
+    <name>rv_books</name>
+    <description>API de Gestion de Bibliothèque Privée</description>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.4</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
-
-  <!-- Informations sur l'organisation -->
-  <organization>
-    <name>JTissDevInfo</name>
-    <url>http://jtissdev.org</url>
-  </organization>
-
-  <!-- Informations sur le développeur -->
-  <developers>
-    <developer>
-      <id>jtissdev</id>
-      <name>Julien Tissier</name>
-      <email>jtissdev@gmail.com</email>
-      <roles>
-        <role>Architect</role>
-        <role>Developer</role>
-        <role>Project Owner</role>
-      </roles>
-    </developer>
-  </developers>
-
-  <!-- Informations sur la licence -->
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-
-  <!-- Propriétés Maven -->
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.boot.version>2.7.4</spring.boot.version>
-    <mysql.connector.version>8.0.31</mysql.connector.version>
-    <java.version>18</java.version>
-  </properties>
-
-  <!-- Dépendances -->
-  <dependencies>
-    <!-- Spring Boot Web Starter -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-      <version>${spring.boot.version}</version>
-    </dependency>
-
-    <!-- Spring Boot Data JPA Starter -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-      <version>${spring.boot.version}</version>
-    </dependency>
-
-    <!-- MySQL Connector -->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql.connector.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <!-- DbManager Library -->
-    <dependency>
-      <groupId>com.jtissdev.lib</groupId>
-      <artifactId>DbManager</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-
-    <!-- Spring Boot Test Starter -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <version>${spring.boot.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- Spring Boot Actuator -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-      <version>${spring.boot.version}</version>
-    </dependency>
-
-    <!-- Lombok for reducing boilerplate code -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
-
-  <!-- Build Configuration -->
-  <build>
-    <plugins>
-      <!-- Plugin Maven Compiler -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <source>18</source>
-          <target>18</target>
-        </configuration>
-      </plugin>
-
-      <!-- Plugin Spring Boot -->
-      <plugin>
+    <parent>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring.boot.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-  <!-- Profils Maven -->
-  <profiles>
-    <profile>
-      <id>dev</id>
-      <properties>
-        <spring.profiles.active>dev</spring.profiles.active>
-      </properties>
-    </profile>
-    <profile>
-      <id>prod</id>
-      <properties>
-        <spring.profiles.active>prod</spring.profiles.active>
-      </properties>
-    </profile>
-    <profile>
-      <id>test</id>
-      <properties>
-        <spring.profiles.active>test</spring.profiles.active>
-        <database.url>jdbc:mysql://localhost:3306/test_db</database.url>
-        <database.username>test_user</database.username>
-        <database.password>test_password</database.password>
-      </properties>
-    </profile>
-    <profile>
-      <id>show</id>
-      <properties>
-        <spring.profiles.active>show</spring.profiles.active>
-        <database.url>jdbc:mysql://localhost:3306/show_db</database.url>
-        <database.username>show_user</database.username>
-        <database.password>show_password</database.password>
-      </properties>
-    </profile>
-  </profiles>
+    <!-- Informations sur l'organisation -->
+    <organization>
+        <name>JTissDevInfo</name>
+        <url>http://jtissdev.org</url>
+    </organization>
+
+    <!-- Informations sur le développeur -->
+    <developers>
+        <developer>
+            <id>jtissdev</id>
+            <name>Julien Tissier</name>
+            <email>jtissdev@gmail.com</email>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+                <role>Project Owner</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <!-- Informations sur la licence -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Propriétés Maven -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <mysql.connector.version>8.0.31</mysql.connector.version>
+        <java.version>21</java.version>  <!-- Utilisez Java 18 -->
+        <spring.boot.version>3.2.0</spring.boot.version>
+    </properties>
+
+    <!-- Dépendances -->
+    <dependencies>
+        <!-- Spring Boot Web Starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+
+        <!-- Spring Boot Data JPA Starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+
+        <!-- MySQL Connector -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.connector.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+
+        <!-- Spring Boot Test Starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring.boot.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Boot Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+
+        <!-- Lombok for reducing boilerplate code -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Mets une version compatible avec Java 18 -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>10.1.0</version>
+        </dependency>
+
+        <!-- Javax Persistance -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <!-- Hibernate-->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.3.1.Final</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Build Configuration -->
+    <build>
+        <plugins>
+            <!-- Plugin Maven Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin Spring Boot -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Profils Maven -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <spring.profiles.active>test</spring.profiles.active>
+                <database.url>jdbc:mysql://localhost:3306/test_db</database.url>
+                <database.username>test_user</database.username>
+                <database.password>test_password</database.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>show</id>
+            <properties>
+                <spring.profiles.active>show</spring.profiles.active>
+                <database.url>jdbc:mysql://localhost:3306/show_db</database.url>
+                <database.username>show_user</database.username>
+                <database.password>show_password</database.password>
+            </properties>
+        </profile>
+    </profiles>
 </project>

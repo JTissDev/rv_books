@@ -22,7 +22,7 @@ public class BookService {
     }
 
     public Book getBookById(int id) {
-        return bookRepository.findById(id).orElse(null);
+        return bookRepository.findById((long) id).orElse(null);
     }
 
     public Book updateBook(int id, Book book) {
@@ -31,7 +31,7 @@ public class BookService {
     }
 
     public void deleteBook(int id) {
-        bookRepository.deleteById(id);
+        bookRepository.deleteById((long) id);
     }
 
     public Book moveToOwned(int id) {

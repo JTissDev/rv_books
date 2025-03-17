@@ -2,7 +2,7 @@ package com.jtissdev.rvbooks.models;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Data
@@ -38,4 +38,12 @@ public class Book {
         inverseJoinColumns = @JoinColumn(name = "publisher_id")
     )
     private List<Publisher> publishers;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

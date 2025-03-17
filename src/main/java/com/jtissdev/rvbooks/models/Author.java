@@ -2,7 +2,7 @@ package com.jtissdev.rvbooks.models;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Data
@@ -16,4 +16,8 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors")
     private List<Book> books;
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
