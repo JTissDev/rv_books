@@ -14,7 +14,9 @@ public class AuthorService {
     private AuthorRepository authorRepository;
 
     public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+        System.out.println("AuthorService.getAllAuthors()");
+        return authorRepository.findAllAuthors();
+
     }
 
     public Author addAuthor(Author author) {

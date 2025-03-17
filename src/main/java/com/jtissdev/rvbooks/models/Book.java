@@ -3,6 +3,8 @@ package com.jtissdev.rvbooks.models;
 import lombok.Data;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -13,7 +15,7 @@ public class Book {
     private int id;
     private String title;
     private String genre;
-    private String publishedDate;
+    private LocalDate publishedDate;
     private String isbn;
     private String description;
     private String status;
