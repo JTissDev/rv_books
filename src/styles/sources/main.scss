@@ -1,0 +1,15 @@
+// ----- /styles/scss/main.scss -----
+@import './variables';
+@import './mixins';
+@import './colorPalette';
+
+@include theme($light-theme);
+
+body {
+  font-family: $font-primary; // Corrige $font-stack en $font-primary
+  background-color: $--background-color; // Utilisez var(--background-color) correctement
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+

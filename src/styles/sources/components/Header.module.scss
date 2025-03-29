@@ -1,0 +1,21 @@
+@import '../partials/_variables.scss';
+@import '../partials/_mixins.scss';
+@import '../partials/_colorPalette.scss';
+
+@include theme($light-theme);
+@include theme($dark-theme);
+
+.header {
+
+    background-color: var(--header-background-color); // Légère démarcation
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--secondary-color);
+
+    .header-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 0 10px;
+        color: var(--text-color);
+    }
+}

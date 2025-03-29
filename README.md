@@ -1,84 +1,66 @@
-# RV Books - Frontend
+# RV Books
 
-**Application React.js pour la gestion d'une bibliothèque privée**
-
----
+API de Gestion de Bibliothèque Privée
 
 ## Description
 
-Cette application React.js permet de gérer une bibliothèque privée en interagissant avec l'API RV Books. Elle offre des fonctionnalités pour visualiser, ajouter, mettre à jour et supprimer des livres, auteurs et éditeurs.
-
----
+RV Books est une application Spring Boot qui permet de gérer une bibliothèque privée. Elle offre des fonctionnalités pour ajouter, mettre à jour, supprimer et rechercher des livres.
 
 ## Prérequis
 
-- **Node.js** : Version 18 ou supérieure
-- **npm** : Version 8 ou supérieure
-
----
+- Java 11
+- Maven 3.6+
+- MySQL 8.0+
 
 ## Installation
 
-### 1. Cloner le dépôt
-```bash
-git clone https://github.com/jtissdev/rv_books_frontend.git
-cd rv_books_frontend
-```
+1. Clonez le dépôt :
 
-### 2. Installer les dépendances
-```bash
-npm install
-```
+   ```sh
+   git clone https://github.com/jtissdev/rv_books.git
+   cd rv_books
+   ```
 
-### 3. Configurer l'environnement
-Créez un fichier `.env` à la racine du projet et configurez l'URL de l'API :
-```
-REACT_APP_API_URL=http://localhost:8080
-```
+2. Configurez votre base de données MySQL et mettez à jour les fichiers de configuration dans resources :
 
----
+- application.properties
+- application-dev.properties
+- application-prod.properties
+- application-test.properties
+- application-show.properties
+
+3. Exécutez le script SQL pour créer la base de données et insérer des données de test :
+
+   ```sh
+   mysql -u root -p < scripts/setup_db.sql
+   ```
+
+4. Compilez et packagez l'application :
+
+   ```sh
+   mvn clean package
+   ```
 
 ## Exécution
+Pour exécuter l'application avec un profil spécifique (par exemple, dev), utilisez la commande suivante :
 
-### Lancer l'application en mode développement
-```bash
-npm start
+```sh
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000).
+## Utilisation
+L'API expose les endpoints suivants :
 
-### Construire l'application pour la production
-```bash
-npm run build
-```
-
-Les fichiers de production seront générés dans le dossier `build/`.
-
----
-
-## Fonctionnalités
-
-- **Gestion des livres** : Visualisation, ajout, mise à jour et suppression
-- **Gestion des auteurs et éditeurs** : Visualisation et gestion associée
-- **Interface utilisateur réactive** : Basée sur React.js et CSS
-
----
-
-## Structure du projet
-
-- **src/components** : Composants React réutilisables
-- **src/pages** : Pages principales de l'application
-- **src/services** : Services pour interagir avec l'API
-- **src/styles** : Fichiers CSS pour le style global et les composants
-
----
+- GET /books : Récupère tous les livres
+- POST /books : Ajoute un nouveau livre
+- GET /books/{id} : Récupère un livre par son ID
+- PUT /books/{id} : Met à jour un livre par son ID
+- DELETE /books/{id} : Supprime un livre par son ID
+- POST /books/{id}/moveToOwned : Déplace un livre vers le statut "owned"
+- GET /books/search : Recherche des livres par différents critères
 
 ## Contribuer
-
 Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou ouvrir une issue pour discuter des changements que vous souhaitez apporter.
 
----
-
 ## Licence
-
-Ce projet est sous licence Apache License 2.0. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Ce projet est sous licence Apache License 2.0. Voir le fichier LICENSE pour plus de détails.
