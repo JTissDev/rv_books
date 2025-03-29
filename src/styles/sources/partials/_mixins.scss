@@ -1,0 +1,56 @@
+// _mixins.scss
+
+// Map des breakpoints
+$breakpoints: (
+    xs: 480px,
+    sm: 768px,
+    md: 1024px,
+    lg: 1280px,
+    xl: 1440px
+);
+
+// Mixin pour les media queries (mobile-first)
+@mixin media_Width($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @error "Le breakpoint `#{$breakpoint}` n'existe pas dans la map `$breakpoints`.";
+    }
+}
+
+// Mixin pour les media queries basées uniquement sur l'orientation
+@mixin media_Orient($orientation) {
+    @if $orientation == portrait {
+        @media (orientation: portrait) {
+            @content;
+        }
+    } @else if $orientation == landscape {
+        @media (orientation: landscape) {
+            @content;
+        }
+    } @else {
+        @error "L'orientation `#{$orientation}` n'est pas valide. Utilisez `portrait` ou `landscape`.";
+    }
+}
+
+// Mixin pour les media queries avec orientation
+@mixin media_width_Orient($breakpoint, $orientation) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint)) and (orientation: #{$orientation}) {
+            @content;
+        }
+    } @else {
+        @error "Le breakpoint `#{$breakpoint}` n'existe pas dans la map `$breakpoints`.";
+    }
+}
+
+
+
+// Exemple : Centrage avec Flexbox
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
