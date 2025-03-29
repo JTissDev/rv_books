@@ -3,11 +3,10 @@
 @import '../partials/_colorPalette.scss';
 
 @include theme($light-theme);
-@include theme($dark-theme);
 
 .header {
 
-    background-color: var(--header-background-color); // Légère démarcation
+    background-color: var(--header-background-color); // Ajoutez !important si nécessaire
     padding: 20px;
     text-align: center;
     border-bottom: 2px solid var(--secondary-color);

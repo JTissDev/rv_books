@@ -1,13 +1,13 @@
 // ----- /styles/scss/main.scss -----
-@import './variables';
-@import './mixins';
-@import './colorPalette';
+@import './partials/variables';
+@import './partials/mixins';
+@import './partials/colorPalette';
 
-@include theme($light-theme);
+@include theme($light-theme); // Applique les variables CSS globalement
 
 body {
-  font-family: $font-primary; // Corrige $font-stack en $font-primary
-  background-color: $--background-color; // Utilisez var(--background-color) correctement
+  font-family: $font-primary;
+  background-color: var(--background-color); // Utilisation correcte
   color: var(--text-color);
   margin: 0;
   padding: 0;

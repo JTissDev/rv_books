@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css'; // Assurez-vous que ce chemin est correct
+import './styles/index.css'; // Assurez-vous que ce chemin est correct
+import styles from './styles/sources/main.scss'; // Importation du fichier SCSS principal
 import App from './App.jsx'; // Ajoutez l'extension .jsx
 import reportWebVitals from './reportWebVitals';
 

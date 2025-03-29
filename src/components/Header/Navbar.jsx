@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/sources/components/Navbar.module.scss';
+import styles from '../../styles/sources/components/Navbar.module.scss';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,20 +17,20 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar">
-            <div className="navbar-header">
-                <button className="hamburger" onClick={toggleMenu}>
+        <nav className={styles.navbar}>
+            <div className={styles.navbarHeader}>
+                <button className={styles.hamburger} onClick={toggleMenu}>
                     ☰
                 </button>
-                <span className="navbar-title">RV Books</span>
+                <span className={styles.navbarTitle}>RV Books</span>
             </div>
-            <ul className={`navbar-menu ${isOpen ? 'open' : ''}`}>
+            <ul className={`${styles.navbarMenu} ${isOpen ? styles.open : ''}`}> {/* Correction de la classe conditionnelle */}
                 {tabs.map((tab, index) => (
-                    <li key={index} className="navbar-item">
-                        <a href={tab.path} className="navbar-link">
+                    <li key={index} className={styles.navbarItem}>
+                        <a href={tab.path} className={styles.navbarLink}>
                             {tab.name}
                         </a>
-                        <ul className="submenu">
+                        <ul className={styles.submenu}>
                             <li>
                                 <a href={`${tab.path}/new`}>Ajouter</a>
                             </li>
