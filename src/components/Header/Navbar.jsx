@@ -4,12 +4,36 @@ import styles from '../../styles/sources/components/Navbar.module.scss';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Liste des onglets
+    // Liste des onglets avec sous-menus imbriqués
     const tabs = [
-        { name: 'Accueil', path: '/' },
-        { name: 'Books', path: '/books' },
-        { name: 'Auteurs', path: '/authors' },
-        { name: 'Éditeurs', path: '/publishers' },
+        {
+            name: 'Accueil',
+            path: '/',
+        },
+        {
+            name: 'Books',
+            path: '/books',
+            submenu: [
+                { name: 'Ajouter', path: '/books/new' },
+                { name: 'Rechercher', path: '/books/search' },
+            ],
+        },
+        {
+            name: 'Auteurs',
+            path: '/authors',
+            submenu: [
+                { name: 'Ajouter', path: '/authors/new' },
+                { name: 'Rechercher', path: '/authors/search' },
+            ],
+        },
+        {
+            name: 'Éditeurs',
+            path: '/publishers',
+            submenu: [
+                { name: 'Ajouter', path: '/publishers/new' },
+                { name: 'Rechercher', path: '/publishers/search' },
+            ],
+        },
     ];
 
     const toggleMenu = () => {
@@ -24,20 +48,21 @@ const Navbar = () => {
                 </button>
                 <span className={styles.navbarTitle}>RV Books</span>
             </div>
-            <ul className={`${styles.navbarMenu} ${isOpen ? styles.open : ''}`}> {/* Correction de la classe conditionnelle */}
+            <ul className={`${styles.navbarMenu} ${isOpen ? styles.open : ''}`}>
                 {tabs.map((tab, index) => (
                     <li key={index} className={styles.navbarItem}>
                         <a href={tab.path} className={styles.navbarLink}>
                             {tab.name}
                         </a>
-                        <ul className={styles.submenu}>
-                            <li>
-                                <a href={`${tab.path}/new`}>Ajouter</a>
-                            </li>
-                            <li>
-                                <a href={`${tab.path}/search`}>Rechercher</a>
-                            </li>
-                        </ul>
+                        {tab.submenu && (
+                            <ul className={styles.submenu}>
+                                {tab.submenu.map((subItem, subIndex) => (
+                                    <li key={subIndex}>
+                                        <a href={subItem.path}>{subItem.name}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </li>
                 ))}
             </ul>
