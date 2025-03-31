@@ -3,11 +3,9 @@
 @import '../partials/_colorPalette.scss';
 
 @include theme($light-theme);
-@include theme($dark-theme);
-
 
 .navbar {
-    background-color: var(--navBar-background-color); // Démarcation plus marquée
+    background-color: var(--navBar-background-color);
     color: var(--text-color);
     padding: 10px;
 
@@ -22,10 +20,10 @@
             font-size: 24px;
             color: var(--text-color);
             cursor: pointer;
-            display: none;
+            display: none; // Par défaut, le hamburger est masqué
 
             @include media_Width(sm) {
-                display: block;
+                display: block; // Affiche le hamburger sur les petits écrans
             }
         }
 
@@ -43,12 +41,12 @@
         padding: 0;
 
         @include media_Width(sm) {
-            display: none;
+            display: none; // Masque le menu sur les petits écrans
             flex-direction: column;
             gap: 10px;
 
             &.open {
-                display: flex;
+                display: flex; // Affiche le menu si la classe "open" est ajoutée
             }
         }
 
