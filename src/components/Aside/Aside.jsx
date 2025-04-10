@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import clsx from "clsx";
 import SearchableList from './SearchableList';
 import apiService from '../../services/apiService';
 import styles from '../../styles/sources/components/Aside.module.scss';
@@ -27,7 +28,7 @@ const Aside = () => {
     };
 
     return (
-        <aside className={styles.aside}>
+        <aside className={clsx(styles.aside, styles.rightAside)}>
             <header className={styles.asideHeader}>
                 <h2>Informations supplémentaires</h2>
             </header>

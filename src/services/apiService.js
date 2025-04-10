@@ -2,6 +2,7 @@ import config from '../config';
 
 const apiService = {
     getAuthors: async () => {
+        console.log('Fetching authors from API...'); // Debug log
         try {
             const response = await fetch(`${config.apiBaseUrl}/authors`);
             if (!response.ok) {
