@@ -1,18 +1,32 @@
-import React from 'react';
-import Header from '../components/Header/Header'; // Importation du Header
-import Aside from '../components/Aside/Aside'; // Importation du composant Aside
-import styles from '../styles/sources/pages/HomePage.module.scss'; // Importation du style
+// HomePage.jsx
+import React, { useEffect, useState } from 'react';
+import Header from '../components/Header/Header';
+import Aside from '../components/Aside/Aside';
+import BooksList from '../components/HomePageMain/BooksList';
+import apiService from '../services/apiService';
+import styles from '../styles/sources/pages/HomePage.module.scss';
 
 const HomePage = () => {
+    const [mesLivres, setMesLivres] = useState([]);
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            const allBooks = await apiService.getBooks();
+            setMesLivres(allBooks);
+        };
+
+        fetchBooks();
+    }, []);
+
     return (
         <div className="page">
-            <Header /> {/* Intégration du Header */}
+            <Header />
             <main className={styles.main}>
                 <div className="content">
                     <h2>Bienvenue sur RV Books</h2>
-                    <p>Gérez vos livres, auteurs et éditeurs facilement.</p>
+                    <BooksList books={mesLivres} />
                 </div>
-                <Aside /> {/* Intégration de l'Aside */}
+                <Aside />
             </main>
             <footer className={styles.footer}>
                 <p>&copy; 2023 RV Books. Tous droits réservés.</p>

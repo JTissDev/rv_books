@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styles from '../../styles/sources/components/SearchableList.module.scss';
 
-const SearchableList = ({ title, items, onSelect, getLabel, getValue }) => {
+const SearchableList = ({ title, items, onSelect, getLabel, getValue, renderItem }) => {
     const [search, setSearch] = useState('');
 
     const filteredItems = items.filter(item => {
@@ -33,7 +33,7 @@ const SearchableList = ({ title, items, onSelect, getLabel, getValue }) => {
                     const value = getValue ? getValue(item) : label;
                     return (
                         <option key={index} value={value}>
-                            {label}
+                            {renderItem ? renderItem(item) : label}
                         </option>
                     );
                 })}

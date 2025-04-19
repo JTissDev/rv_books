@@ -9,7 +9,7 @@ const HomePage = () => {
             <Header /> {/* Intégration du Header */}
             <main className={styles.main}>
             <div className="content">
-                <h2>Bienvenue sur RV Books</h2>
+                <h2>Bienvenue </h2>
                 <p>Gérez vos livres, auteurs et éditeurs facilement.</p>
             </div>
             <Aside /> {/* Intégration de l'Aside */}
