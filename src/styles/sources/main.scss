@@ -1,0 +1,20 @@
+// ----- /styles/scss/main.scss -----
+@import './partials/variables';
+@import './partials/mixins';
+@import './partials/colorPalette';
+
+@include theme($light-theme); // Applique les variables CSS globalement
+
+body {
+  font-family: $font-primary;
+  background-color: var(--background-color); // Utilisation correcte
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+
+  main{
+    padding: 20px;
+    display: flex;
+  }
+}
+

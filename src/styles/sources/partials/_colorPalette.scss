@@ -1,0 +1,70 @@
+// ----- /styles/scss/_themes.scss -----
+$light-theme: (
+  //Background color
+  background-color: #f4f4f4,
+  header-background-color: #bae6f8,
+  navBar-background-color: darken(#f4f4f4, 10%),
+  
+  //Text color
+  text-color: #000,
+
+  //Primary color
+  primary-color: #4CAF50,
+  secondary-color: #FF5722,
+);
+
+$dark-theme: (
+  //Background color
+  background-color: #121212,
+  header-background-color: lighten(#121212, 5%),
+  navBar-background-color: lighten(#121212, 10%),
+
+  //Text color
+  text-color: #fff,
+
+  //Primary color
+  primary-color: #1E1E1E,
+  secondary-color: #FF5722,
+);
+
+@mixin theme($theme) {
+  // background-color
+  $background-color: map-get($theme, background-color);
+  $header-background-color: map-get($theme, header-background-color);
+  $navBar-background-color: map-get($theme, navBar-background-color);  
+  
+  // text-color
+  $text-color: map-get($theme, text-color);
+
+  // primary-color
+  $primary-color: map-get($theme, primary-color);
+  $secondary-color: map-get($theme, secondary-color);
+  
+  html.light {
+    // background-color
+    --background-color: #{map-get($light-theme, background-color)};
+    --header-background-color: #{map-get($light-theme, header-background-color)};
+    --navBar-background-color: #{map-get($light-theme, navBar-background-color)};
+
+    // text-color
+    --text-color: #{map-get($light-theme, text-color)};
+
+    // primary-color
+    --primary-color: #{map-get($light-theme, primary-color)};
+    --secondary-color: #{map-get($light-theme, secondary-color)};
+    }
+
+  html.dark {
+    // background-color
+    --background-color: #{map-get($dark-theme, background-color)};
+    --header-background-color: #{map-get($dark-theme, header-background-color)};
+    --navBar-background-color: #{map-get($dark-theme, navBar-background-color)};
+
+    // text-color
+    --text-color: #{map-get($dark-theme, text-color)};
+
+    // primary-color
+    --primary-color: #{map-get($dark-theme, primary-color)};
+    --secondary-color: #{map-get($dark-theme, secondary-color)};
+    }
+}

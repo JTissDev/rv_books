@@ -1,0 +1,53 @@
+// Aside.jsx
+import React, { useState, useEffect } from 'react';
+import clsx from "clsx";
+import SearchableList from './SearchableList';
+import apiService from '../../services/apiService';
+import styles from '../../styles/sources/components/Aside.module.scss';
+
+const Aside = () => {
+    const [authors, setAuthors] = useState([]);
+    const [publishers, setPublishers] = useState([]);
+
+    const [selectedAuthorId, setSelectedAuthorId] = useState(null);
+    const [selectedPublisherId, setSelectedPublisherId] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const authorsData = await apiService.getAuthors();
+            setAuthors(authorsData);
+
+            const publishersData = await apiService.getPublishers();
+            setPublishers(publishersData);
+        };
+
+        fetchData();
+    }, []);
+
+    return (
+        <aside className={clsx(styles.aside, styles.rightAside)}>
+            <header className={styles.asideHeader}>
+                <h2>Informations supplémentaires</h2>
+            </header>
+            <main className={styles.asideMain}>
+                <SearchableList
+                    title="Auteurs"
+                    items={authors}
+                    getLabel={(auteur) => `${auteur.firstName} ${auteur.lastName}`}
+                    getValue={(auteur) => auteur.id}
+                    onSelect={(id) => setSelectedAuthorId(id)}
+                />
+
+                <SearchableList
+                    title="Éditeurs"
+                    items={publishers}
+                    getLabel={(editeur) => editeur.name}
+                    getValue={(editeur) => editeur.id}
+                    onSelect={(id) => setSelectedPublisherId(id)}
+                />
+            </main>
+        </aside>
+    );
+};
+
+export default Aside;
