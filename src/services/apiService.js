@@ -13,7 +13,6 @@ const apiService = {
             if (!response.ok) {
                 throw new Error('Erreur lors de la récupération des auteurs');
             }
-            console.log(response);
             
             return await response.json();
         } catch (error) {
@@ -24,7 +23,12 @@ const apiService = {
 
     getPublishers: async () => {
         try {
-            const response = await fetch(`${API_URL}/publishers`);
+            const response = await fetch(`${API_URL}/publishers`,{
+                method: 'GET',
+                credentials: 'include', // Inclut les cookies si nécessaires
+                headers: {
+                  'Content-Type': 'application/json',
+        }});
             if (!response.ok) {
                 throw new Error('Erreur lors de la récupération des éditeurs');
             }
