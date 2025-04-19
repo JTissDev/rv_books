@@ -13,13 +13,12 @@ const Aside = () => {
     useEffect(() => {
         const fetchData = async () => {
             const authorsData = await apiService.getAuthors();
+            console.log('Données auteurs récupérées :', authorsData); // Debug log
             setAuthors(authorsData);
 
             const publishersData = await apiService.getPublishers();
+            console.log('Données éditeurs récupérées :', publishersData); // Debug log
             setPublishers(publishersData);
-
-            console.log(authorsData); // Debug log
-            // console.log(publishersData); // Debug log
         };
 
         fetchData();
@@ -39,13 +38,13 @@ const Aside = () => {
                 <button onClick={debugFetchAuthors} className={styles.debugButton}>
                     Debug /authors
                 </button>
-                {console.log('Données auteurs transmises :', authors)} {/* Debug log */}
+                {/*console.log('Données auteurs transmises :', authors)*/} {/* Debug log */}
                 <SearchableList
                     title="Auteurs"
                     items={authors}
                     onSelect={setSelectedAuthor}
                 />
-                {console.log('Données éditeurs transmises :', publishers)} {/* Debug log */}
+                {/* console.log('Données éditeurs transmises :', publishers) */} {/* Debug log */}
                 <SearchableList
                     title="Éditeurs"
                     items={publishers}

@@ -2,7 +2,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const apiService = {
     getAuthors: async () => {
-        console.log('Fetching authors from API...'); // Debug log
+        // console.log('Fetching authors from API...'); // Debug log
         try {
             const response = await fetch(`${API_URL}/authors`,{
                 method: 'GET',
