@@ -1,13 +1,20 @@
-import config from '../config';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const apiService = {
     getAuthors: async () => {
         console.log('Fetching authors from API...'); // Debug log
         try {
-            const response = await fetch(`${config.apiBaseUrl}/authors`);
+            const response = await fetch(`${API_URL}/authors`,{
+                method: 'GET',
+                credentials: 'include', // Inclut les cookies si nécessaires
+                headers: {
+                  'Content-Type': 'application/json',
+        }});
             if (!response.ok) {
                 throw new Error('Erreur lors de la récupération des auteurs');
             }
+            console.log(response);
+            
             return await response.json();
         } catch (error) {
             console.error(error);
@@ -17,7 +24,7 @@ const apiService = {
 
     getPublishers: async () => {
         try {
-            const response = await fetch(`${config.apiBaseUrl}/publishers`);
+            const response = await fetch(`${API_URL}/publishers`);
             if (!response.ok) {
                 throw new Error('Erreur lors de la récupération des éditeurs');
             }
