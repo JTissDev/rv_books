@@ -1,7 +1,11 @@
 // BookItem.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';
 
-const BookItem = ({ book }) => {
+const BookItem = ({ book, onStatusChange, onDelete }) => {
+    const navigate = useNavigate();
+
     const fullTitle = book.series
         ? `${book.series} - Tome ${book.volumeNumber || ''}: ${book.volumeTitle || book.title}`
         : book.title;
@@ -10,21 +14,53 @@ const BookItem = ({ book }) => {
     const publishers = book.publishers.map(p => p.name).join(', ');
     const pubYear = new Date(book.publishedDate).getFullYear();
 
+    const statusOptions = [
+        { label: 'Souhaité', value: 'wishlist' },
+        { label: 'En commande', value: 'ordered' },
+        { label: 'Possédé', value: 'owned' },
+    ];
+
     return (
-        <div>
-            <strong>{fullTitle}</strong>
-            <div>📅 {pubYear} | 🧾 ISBN: {book.isbn || 'N/A'} | 💰 {book.price.toFixed(2)} €</div>
-            <div>📚 Genre: {book.genre}</div>
-            <div>✍️ Auteur(s): {authors}</div>
-            <div>🏢 Éditeur(s): {publishers}</div>
-            {book.status && <div>📌 Statut: {book.status}</div>}
+        <div className={styles.bookItem}>
+            <h3 className={styles.title}>{fullTitle}</h3>
+            <div className={styles.separator}></div>
+
+            <div className={styles.topSection}>
+                <div className={styles.cover}></div>
+
+                <div className={styles.infoColumn}>
+                    <div>✍️ {authors}</div>
+                    <div>🏢 {publishers}</div>
+                    <div>📚 {book.genre}</div>
+                </div>
+
+                <div className={styles.statusBlock}>
+                    <div>📌 Statut :</div>
+                    <select
+                        value={book.status}
+                        onChange={(e) => onStatusChange(book.id, e.target.value)}
+                    >
+                        {statusOptions.map((opt) => (
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+
             {book.description && book.description.trim() !== '' && (
-                <div>📝 {book.description}</div>
+                <div className={styles.description}>📝 {book.description}</div>
             )}
+
+            <div className={styles.footer}>
+                <div className={styles.isbn}>🧾 ISBN: {book.isbn || 'N/A'}</div>
+                <div className={styles.actions}>
+                    <button onClick={() => navigate(`/books/${book.id}/edit`)}>Modifier</button>
+                    <button onClick={() => onDelete(book.id)}>Supprimer</button>
+                </div>
+                <div className={styles.price}>💰 {book.price.toFixed(2)} €</div>
+            </div>
         </div>
     );
 };
 
 export default BookItem;
-
-
