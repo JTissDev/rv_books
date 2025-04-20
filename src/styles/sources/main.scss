@@ -2,8 +2,18 @@
 @import './partials/variables';
 @import './partials/mixins';
 @import './partials/colorPalette';
+@import './components/Header.module';
+@import './components/Navbar.module';
 
 @include theme($light-theme); // Applique les variables CSS globalement
+
+:root {
+  --background-color: #f4f4f4; // Fallback
+  --text-color: #000;         // Fallback
+  --navBar-background-color: #bae6f8; // Fallback
+  --primary-color: #4CAF50;   // Fallback
+  --secondary-color: #FF5722; // Fallback
+}
 
 body {
   font-family: $font-primary;

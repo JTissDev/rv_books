@@ -2,7 +2,6 @@
 @import '../partials/_colorPalette.scss';
 
 @include theme($light-theme);
-@include theme($dark-theme);
 
 .container {
     padding: 20px;

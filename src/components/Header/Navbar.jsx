@@ -43,7 +43,10 @@ const Navbar = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbarHeader}>
-                <button className={styles.hamburger} onClick={toggleMenu}>
+                <button
+                    className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}
+                    onClick={toggleMenu}
+                >
                     ☰
                 </button>
                 <span className={styles.navbarTitle}>RV Books</span>
