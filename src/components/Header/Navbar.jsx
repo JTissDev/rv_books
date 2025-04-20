@@ -50,7 +50,6 @@ const Navbar = () => {
                 >
                     ☰
                 </button>
-                <span className={styles['navbar-title']}>RV Books</span>
             </div>
             <ul className={`${styles['navbar-menu']} ${isOpen ? styles.open : ''}`}>
                 {tabs.map((tab, index) => (
