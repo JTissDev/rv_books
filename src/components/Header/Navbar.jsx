@@ -1,10 +1,11 @@
+// Navbar.jsx
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from '../../styles/sources/components/Navbar.module.scss';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Liste des onglets avec sous-menus imbriqués
     const tabs = [
         {
             name: 'Accueil',
@@ -42,23 +43,31 @@ const Navbar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.navbarHeader}>
-                <button className={styles.hamburger} onClick={toggleMenu}>
+            <div className={styles['navbar-header']}>
+                <button
+                    className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}
+                    onClick={toggleMenu}
+                >
                     ☰
                 </button>
-                <span className={styles.navbarTitle}>RV Books</span>
+                <span className={styles['navbar-title']}>RV Books</span>
             </div>
-            <ul className={`${styles.navbarMenu} ${isOpen ? styles.open : ''}`}>
+            <ul className={`${styles['navbar-menu']} ${isOpen ? styles.open : ''}`}>
                 {tabs.map((tab, index) => (
-                    <li key={index} className={styles.navbarItem}>
-                        <a href={tab.path} className={styles.navbarLink}>
-                            {tab.name}
-                        </a>
+                    <li key={index} className={styles['navbar-item']}>
+                        <NavLink
+                            to={tab.path}
+                            className={({ isActive }) =>
+                                isActive ? `${styles['navbar-link']} ${styles.active}` : styles['navbar-link']
+                            }
+                        >
+                            {tab.name} {tab.submenu && '▼'}
+                        </NavLink>
                         {tab.submenu && (
                             <ul className={styles.submenu}>
                                 {tab.submenu.map((subItem, subIndex) => (
                                     <li key={subIndex}>
-                                        <a href={subItem.path}>{subItem.name}</a>
+                                        <NavLink to={subItem.path}>{subItem.name}</NavLink>
                                     </li>
                                 ))}
                             </ul>
