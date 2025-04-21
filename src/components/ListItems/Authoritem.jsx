@@ -1,12 +1,15 @@
 // AuthorItem.jsx
 import React from 'react';
 
-const AuthorItem = ({ author }) => {
+export const AuthorListItem = ({ author }) => {
     return (
-        <div>
+        <li>
             {author.firstName} {author.lastName}
-        </div>
+        </li>
     );
 };
 
-export default AuthorItem;
+export const AuthorItemSelect = ({ author }) => {
+    return <div>{author.firstName} {author.lastName}</div>;
+}
+
