@@ -1,6 +1,6 @@
 // BooksList.jsx
 import React from 'react';
-import BookItem from '../ListItems/BookItem';
+import {BookItemPreview} from '../ListItems/BookItem';
 import styles from '../../styles/sources/components/HomePage/BookList.module.scss';
 
 const BooksList = ({ books }) => {
@@ -15,7 +15,7 @@ const BooksList = ({ books }) => {
             <div className={styles.bookList}>
                 {books.map((book) => (
                     <div key={book.id}  className={styles.bookItem} > 
-                        <BookItem book={book} />
+                        <BookItemPreview book={book} />
                     </div>
                 ))}
             </div>
