@@ -34,10 +34,10 @@ const ActionButtons = ({ bookId, onDelete }) => {
     return (
         <div className={styles.actions}>
             <button onClick={() => navigate(`/book/${bookId}`)}>
-                 Modifier
+                Modifier
             </button>
             <button onClick={() => onDelete(bookId)}>
-                 Supprimer
+                Supprimer
             </button>
         </div>
     );
@@ -47,7 +47,9 @@ export const BookItemMini = ({ book }) => {
     const { fullTitle } = useBookInfo(book);
     const navigate = useNavigate();
     return (
-        <div onClick={() => navigate(`/book/${book.id}`)} className={styles.bookMini}>
+        <div
+            onClick={() => navigate(`/book/view-${book.id}`, { state: { book } })}
+            className={styles.bookMini}>
             {fullTitle}
         </div>
     );
@@ -59,7 +61,8 @@ export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
     const publishers = book.publishers.map(p => p.name).join(', ');
 
     return (
-        <fieldset className={styles.bookItem} onClick={() => navigate(`/book/${book.id}`)}>
+        <fieldset className={styles.bookItem} 
+        onClick={() => navigate(`/book/view-${book.id}`, { state: { book } })}>
             <h3 className={styles.title}>{fullTitle}</h3>
             <section className={styles.topSection}>
                 <div className={styles.cover}></div>

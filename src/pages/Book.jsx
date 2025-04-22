@@ -3,6 +3,7 @@
 // import libraries
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 // Import Services
 import apiService from '../services/apiService';
@@ -15,6 +16,38 @@ import {AuthorListItem} from '../components/ListItems/Authoritem';
 
 // Import styles
 import styles from '../styles/sources/components/ListItems/BookItem.module.scss';
+
+const STATUS_OPTIONS = [
+    { label: 'Souhaité', value: 'wishlist' },
+    { label: 'En commande', value: 'ordered' },
+    { label: 'Possédé', value: 'owned' },
+];
+
+const useLoadedBook = () => {
+    const { id } = useParams();
+    const { state } = useLocation();
+    const [book, setBook] = useState(state?.book || null);
+
+    useEffect(() => {
+        if (!book) {
+            apiService.getBookById(id).then(setBook);
+        }
+    }, [id, book]);
+
+    return book;
+};
+
+const getBookInfo = (book) => {
+    const fullTitle = book.series
+        ? `${book.series} - Tome ${book.volumeNumber || ''}: ${book.volumeTitle || book.title}`
+        : book.title;
+
+    const authors = book.authors.map(a => `${a.firstName} ${a.lastName}`.trim()).join(', ');
+    const publishers = book.publishers.map(p => p.name).join(', ');
+    const pubYear = new Date(book.publishedDate).getFullYear();
+
+    return { fullTitle, authors, publishers, pubYear };
+};
 
 export const NewBook = () => {
     const handleSubmit = (e) => {
@@ -48,7 +81,10 @@ export const NewBook = () => {
     );
 };
 
-export const EditBook = ({ book, onUpdate }) => {
+export const EditBook = ({onUpdate }) => {
+    const book = useLoadedBook();
+    if (!book) return <p>Chargement...</p>;
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // Logic to update the book
@@ -86,14 +122,12 @@ export const EditBook = ({ book, onUpdate }) => {
     );
 };
 
-export const ViewBook = ({ book }) => {
-    const fullTitle = book.series
-        ? `${book.series} - Tome ${book.volumeNumber || ''}: ${book.volumeTitle || book.title}`
-        : book.title;
+export const ViewBook = () => {
+    const book = useLoadedBook();
+    if (!book) return <p>Chargement...</p>;
 
-    const authors = book.authors.map(a => `${a.firstName} ${a.lastName}`.trim()).join(', ');
+    const { fullTitle } = getBookInfo(book);
     const publishers = book.publishers.map(p => p.name).join(', ');
-    const pubYear = new Date(book.publishedDate).getFullYear();
 
     return (
         <>
