@@ -1,10 +1,17 @@
 // BooksPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookItemFull } from '../components/ListItems/BookItem';
+
+// Import Services
 import apiService from '../services/apiService';
-import styles from '../styles/sources/pages/Books.module.scss';
+
+// Imort components
 import Header from '../components/Header/Header';
+import Footer from '../components/Header/Footer';
+import { BookItemFull } from '../components/ListItems/BookItem';
+
+// Import styles
+import styles from '../styles/sources/pages/Books.module.scss';
 
 const Books = () => {
     const [books, setBooks] = useState([]);
@@ -21,11 +28,11 @@ const Books = () => {
     }, []);
 
     const handleSelectBook = (bookId) => {
-        navigate(`/book/${bookId}`);
+        navigate(`/book/view-${bookId}`);
     };
 
     return (
-        <div className={styles.page}>
+        <>
             <Header />
             <main className="content">
                 <h2 className={styles.title}>Tous les livres</h2>
@@ -41,10 +48,8 @@ const Books = () => {
                     ))}
                 </div>
             </main>
-            <footer className={styles.footer}>
-                <p>&copy; 2023 RV Books. Tous droits réservés.</p>
-            </footer>
-        </div>
+            <Footer />
+        </>
     );
 };
 

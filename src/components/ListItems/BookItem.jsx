@@ -4,7 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { AuthorListItem } from './Authoritem';
 import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';
 
-// Centralise les données formattées utilisées dans tous les composants
+const STATUS_OPTIONS = [
+    { label: 'Souhaité', value: 'wishlist' },
+    { label: 'En commande', value: 'ordered' },
+    { label: 'Possédé', value: 'owned' },
+];
+
 const useBookInfo = (book) => {
     const fullTitle = book.series
         ? `${book.series} - Tome ${book.volumeNumber || ''}: ${book.volumeTitle || book.title}`
@@ -17,50 +22,56 @@ const useBookInfo = (book) => {
     return { fullTitle, authors, publishers, pubYear };
 };
 
-export const BookItemMini = ({ book }) => {
-    const { fullTitle } = useBookInfo(book);
-    return <div>{fullTitle}</div>;
+const ActionButtons = ({ bookId, onDelete }) => {
+    const navigate = useNavigate();
+    return (
+        <div className={styles.actions}>
+            <button onClick={() => navigate(`/book/${bookId}`)}>
+                 Modifier
+            </button>
+            <button onClick={() => onDelete(bookId)}>
+                 Supprimer
+            </button>
+        </div>
+    );
 };
 
+export const BookItemMini = ({ book }) => {
+    const { fullTitle } = useBookInfo(book);
+    const navigate = useNavigate();
+    return (
+        <div onClick={() => navigate(`/book/${book.id}`)} className={styles.bookMini}>
+            {fullTitle}
+        </div>
+    );
+};
 
 export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
     const navigate = useNavigate();
-
-    const fullTitle = book.series
-        ? `${book.series} - Tome ${book.volumeNumber || ''}: ${book.volumeTitle || book.title}`
-        : book.title;
-
-    const authors = book.authors.map(a => `${a.firstName} ${a.lastName}`.trim()).join(', ');
+    const { fullTitle } = useBookInfo(book);
     const publishers = book.publishers.map(p => p.name).join(', ');
-    const pubYear = new Date(book.publishedDate).getFullYear();
-
-    const statusOptions = [
-        { label: 'Souhaité', value: 'Wishlist' },
-        { label: 'En commande', value: 'Ordered' },
-        { label: 'Possédé', value: 'Owned' },
-    ];
 
     return (
-        <fieldset className={styles.bookItem}>
+        <fieldset className={styles.bookItem} onClick={() => navigate(`/book/${book.id}`)}>
             <h3 className={styles.title}>{fullTitle}</h3>
             <section className={styles.topSection}>
                 <div className={styles.cover}></div>
 
                 <div className={styles.infoColumn}>
-                    <ul>{book.authors.map((author)=>(
-                        <AuthorListItem key={author.id} author={author} /> 
+                    <ul>{book.authors.map((author) => (
+                        <AuthorListItem key={author.id} author={author} />
                     ))}</ul>
                     <div>🏢 {publishers}</div>
                     <div>📚 {book.genre}</div>
                 </div>
 
-                <div className={styles.statusBlock}>
+                <div className={styles.statusBlock} onClick={(e) => e.stopPropagation()}>
                     <div>📌 Statut :</div>
                     <select
                         value={book.status}
                         onChange={(e) => onStatusChange(book.id, e.target.value)}
                     >
-                        {statusOptions.map((opt) => (
+                        {STATUS_OPTIONS.map((opt) => (
                             <option key={opt.value} value={opt.value}>{opt.label}</option>
                         ))}
                     </select>
@@ -71,12 +82,9 @@ export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
                 <div className={styles.description}>📝 {book.description}</div>
             )}
 
-            <footer className={styles.footer}>
+            <footer className={styles.footer} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.isbn}>🧾 ISBN: {book.isbn || 'N/A'}</div>
-                <div className={styles.actions}>
-                    <button onClick={() => navigate(`/books/${book.id}/edit`)}>Modifier</button>
-                    <button onClick={() => onDelete(book.id)}>Supprimer</button>
-                </div>
+                <ActionButtons bookId={book.id} onDelete={onDelete} />
                 <div className={styles.price}>💰 {book.price.toFixed(2)} €</div>
             </footer>
         </fieldset>
@@ -84,14 +92,7 @@ export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
 };
 
 export const BookItemFull = ({ book, onStatusChange, onDelete }) => {
-    const navigate = useNavigate();
     const { fullTitle, authors, publishers, pubYear } = useBookInfo(book);
-
-    const statusOptions = [
-        { label: 'Souhaité', value: 'wishlist' },
-        { label: 'En commande', value: 'ordered' },
-        { label: 'Possédé', value: 'owned' },
-    ];
 
     return (
         <div className={styles.bookItem}>
@@ -113,7 +114,7 @@ export const BookItemFull = ({ book, onStatusChange, onDelete }) => {
                         value={book.status}
                         onChange={(e) => onStatusChange(book.id, e.target.value)}
                     >
-                        {statusOptions.map((opt) => (
+                        {STATUS_OPTIONS.map((opt) => (
                             <option key={opt.value} value={opt.value}>{opt.label}</option>
                         ))}
                     </select>
@@ -126,10 +127,7 @@ export const BookItemFull = ({ book, onStatusChange, onDelete }) => {
 
             <div className={styles.footer}>
                 <div className={styles.isbn}>🧾 ISBN: {book.isbn || 'N/A'}</div>
-                <div className={styles.actions}>
-                    <button onClick={() => navigate(`/books/${book.id}/edit`)}>Modifier</button>
-                    <button onClick={() => onDelete(book.id)}>Supprimer</button>
-                </div>
+                <ActionButtons bookId={book.id} onDelete={onDelete} />
                 <div className={styles.price}>💰 {book.price.toFixed(2)} €</div>
             </div>
         </div>

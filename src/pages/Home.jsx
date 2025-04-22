@@ -1,6 +1,7 @@
 // HomePage.jsx
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header/Header';
+import Footer from '../components/Header/Footer';
 import Aside from '../components/Aside/Aside';
 import BooksList from '../components/HomePageMain/BooksList';
 import apiService from '../services/apiService';
@@ -19,7 +20,7 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="page">
+        <>
             <Header />
             <main className={styles.main}>
                 <div className="content">
@@ -28,10 +29,8 @@ const HomePage = () => {
                 </div>
                 <Aside />
             </main>
-            <footer className={styles.footer}>
-                <p>&copy; 2023 RV Books. Tous droits réservés.</p>
-            </footer>
-        </div>
+            <Footer />
+        </>
     );
 };
 
