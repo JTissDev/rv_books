@@ -1,5 +1,6 @@
 // SearchableList.jsx
 import React, { useState } from 'react';
+import { AuthorItemSelect } from '../ListItems/Authoritem';
 import styles from '../../styles/sources/components/SearchableList.module.scss';
 
 const SearchableList = ({ title, items, onSelect, getLabel, getValue, renderItem }) => {

@@ -1,6 +1,7 @@
 // BookItem.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthorListItem } from './Authoritem';
 import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';
 
 // Centralise les données formattées utilisées dans tous les composants
@@ -46,7 +47,9 @@ export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
                 <div className={styles.cover}></div>
 
                 <div className={styles.infoColumn}>
-                    <div>✍️ {authors}</div>
+                    <ul>{book.authors.map((author)=>(
+                        <AuthorListItem key={author.id} author={author} /> 
+                    ))}</ul>
                     <div>🏢 {publishers}</div>
                     <div>📚 {book.genre}</div>
                 </div>
