@@ -1,7 +1,15 @@
 // Navbar.jsx
+
+// import libraries
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from '../../styles/sources/components/Navbar.module.scss';
+
+// Import Services
+
+// Import components
+
+// Import styles
+import styles from '../../styles/sources/components/LayoutStyle/Navbar.module.scss';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);

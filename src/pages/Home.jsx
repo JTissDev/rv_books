@@ -1,11 +1,21 @@
 // HomePage.jsx
+
+// import libraries
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header/Header';
-import Footer from '../components/Header/Footer';
-import Aside from '../components/Aside/Aside';
-import BooksList from '../components/HomePageMain/BooksList';
+
+// Import Services
 import apiService from '../services/apiService';
+
+// Import components
+import Header from '../components/Layout/Header';
+import Footer from '../components/Layout/Footer';
+import Aside from '../components/Aside/Aside';
+import BooksList from '../components/ItemsList/BooksList';
+
+// Import styles
 import styles from '../styles/sources/pages/HomePage.module.scss';
+
+
 
 const HomePage = () => {
     const [mesLivres, setMesLivres] = useState([]);

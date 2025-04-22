@@ -1,5 +1,14 @@
+// Footer.jsx
+
+// import libraries
 import React from 'react';
-import styles from '../../styles/sources/components/Footer.module.scss';
+
+// Import Services
+
+// Import components
+
+// Import styles
+import styles from '../../styles/sources/components/LayoutStyle/Footer.module.scss';
 
 const Footer = () => {
     return (

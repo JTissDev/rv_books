@@ -1,13 +1,15 @@
 // BooksPage.jsx
+
+// import libraries
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Import Services
 import apiService from '../services/apiService';
 
-// Imort components
-import Header from '../components/Header/Header';
-import Footer from '../components/Header/Footer';
+// Import components
+import Header from '../components/Layout/Header';
+import Footer from '../components/Layout/Footer';
 import { BookItemFull } from '../components/ListItems/BookItem';
 
 // Import styles

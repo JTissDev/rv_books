@@ -1,5 +1,9 @@
+// Routes for the application
+// Importing necessary libraries
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Importing pages
 import Home from '../pages/Home';
 import Books from '../pages/Books';
 import {EditBook, NewBook, ViewBook} from '../pages/Book';

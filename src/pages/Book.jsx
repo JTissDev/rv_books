@@ -1,14 +1,17 @@
+// BooksPage.jsx
 
+// import libraries
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Import Services
 import apiService from '../services/apiService';
 
-// Imort components
-import Header from '../components/Header/Header';
-import Footer from '../components/Header/Footer';
+// Import components
+import Header from '../components/Layout/Header';
+import Footer from '../components/Layout/Footer';
 import { BookItemFull } from '../components/ListItems/BookItem';
+import {AuthorListItem} from '../components/ListItems/Authoritem';
 
 // Import styles
 import styles from '../styles/sources/components/ListItems/BookItem.module.scss';
@@ -40,7 +43,7 @@ export const NewBook = () => {
                     <button type="submit">Create Book</button>
                 </form>
             </main>
-            <footer>Footer Content</footer>
+            <Footer/>
         </>
     );
 };
@@ -78,7 +81,7 @@ export const EditBook = ({ book, onUpdate }) => {
                     <button type="submit">Update Book</button>
                 </form>
             </main>
-            <footer>Footer Content</footer>
+            <Footer/>
         </>
     );
 };
@@ -123,7 +126,7 @@ export const ViewBook = ({ book }) => {
                     <div className={styles.price}>💰 {book.price.toFixed(2)} €</div>
                 </div>
             </main>
-            <footer>Footer Content</footer>
+            <Footer />
         </>
     );
 };

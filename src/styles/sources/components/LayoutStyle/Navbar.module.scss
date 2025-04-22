@@ -1,6 +1,6 @@
-@import '../partials/_variables.scss';
-@import '../partials/_mixins.scss';
-@import '../partials/_colorPalette.scss';
+@import '../../partials/_variables.scss';
+@import '../../partials/_mixins.scss';
+@import '../../partials/_colorPalette.scss';
 
 @include theme($light-theme);
 

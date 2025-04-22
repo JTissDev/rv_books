@@ -1,8 +1,16 @@
 // Aside.jsx
+
+// import libraries
 import React, { useState, useEffect } from 'react';
 import clsx from "clsx";
-import SearchableList from './SearchableList';
+
+// Import Services
 import apiService from '../../services/apiService';
+
+// Import components
+import SearchableList from './SearchableList';
+
+// Import styles
 import styles from '../../styles/sources/components/Aside.module.scss';
 
 const Aside = () => {

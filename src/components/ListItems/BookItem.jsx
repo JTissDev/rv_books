@@ -1,7 +1,14 @@
 // BookItem.jsx
+
+// import libraries
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// Import Services
+// Import components
 import { AuthorListItem } from './Authoritem';
+
+// Import styles
 import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';
 
 const STATUS_OPTIONS = [
