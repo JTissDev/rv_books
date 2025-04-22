@@ -15,6 +15,7 @@ const Navbar = () => {
             name: 'Books',
             path: '/books',
             submenu: [
+                { name: 'Tous', path: '/books' },
                 { name: 'Ajouter', path: '/books/new' },
                 { name: 'Rechercher', path: '/books/search' },
             ],

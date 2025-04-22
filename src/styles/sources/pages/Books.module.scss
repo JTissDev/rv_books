@@ -1,0 +1,33 @@
+@import '../partials/variables';
+@import '../partials/mixins';
+@import '../partials/colorPalette';
+
+@include theme($light-theme);
+
+.page {
+    padding: 30px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+.bookList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bookClickable {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+}
