@@ -9,7 +9,7 @@ import React from 'react';
 import {BookItemPreview} from '../ListItems/BookItem';
 
 // Import styles
-import styles from '../../styles/sources/components/HomePage/BookList.module.scss';
+import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';
 
 const BooksList = ({ books }) => {
     if (!books || books.length === 0) {
