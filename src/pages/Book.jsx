@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams, useLocation } from 'react-router-dom';
 
+// Import Assets
+//import{STATUS_OPTIONS} from '../assets/constants/BookStatus';
+
 // Import Services
 import apiService from '../services/apiService';
 
@@ -16,12 +19,6 @@ import {AuthorListItem} from '../components/ListItems/Authoritem';
 
 // Import styles
 import styles from '../styles/sources/components/ListItems/BookItem.module.scss';
-
-const STATUS_OPTIONS = [
-    { label: 'Souhaité', value: 'wishlist' },
-    { label: 'En commande', value: 'ordered' },
-    { label: 'Possédé', value: 'owned' },
-];
 
 const useLoadedBook = () => {
     const { id } = useParams();

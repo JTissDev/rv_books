@@ -4,18 +4,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Import Assets
+import{STATUS_OPTIONS} from '../../assets/constant/statusOption';
+
 // Import Services
 // Import components
 import { AuthorListItem } from './Authoritem';
 
 // Import styles
 import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';
-
-const STATUS_OPTIONS = [
-    { label: 'Souhaité', value: 'wishlist' },
-    { label: 'En commande', value: 'ordered' },
-    { label: 'Possédé', value: 'owned' },
-];
 
 const useBookInfo = (book) => {
     const fullTitle = book.series
