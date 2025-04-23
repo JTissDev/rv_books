@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useParams, useLocation } from 'react-router-dom';
 
 // Import Assets
-//import{STATUS_OPTIONS} from '../assets/constants/BookStatus';
+import{STATUS_OPTIONS} from '../assets/constant/statusOption';
+import { getBookInfo } from '../assets/utils/bookUtils';
 
 // Import Services
 import apiService from '../services/apiService';
@@ -32,18 +33,6 @@ const useLoadedBook = () => {
     }, [id, book]);
 
     return book;
-};
-
-const getBookInfo = (book) => {
-    const fullTitle = book.series
-        ? `${book.series} - Tome ${book.volumeNumber || ''}: ${book.volumeTitle || book.title}`
-        : book.title;
-
-    const authors = book.authors.map(a => `${a.firstName} ${a.lastName}`.trim()).join(', ');
-    const publishers = book.publishers.map(p => p.name).join(', ');
-    const pubYear = new Date(book.publishedDate).getFullYear();
-
-    return { fullTitle, authors, publishers, pubYear };
 };
 
 export const NewBook = () => {

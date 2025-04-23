@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Import Assets
 import{STATUS_OPTIONS} from '../../assets/constant/statusOption';
+import { getBookInfo } from '../../assets/utils/bookUtils';
 
 // Import Services
 // Import components
@@ -13,18 +14,6 @@ import { AuthorListItem } from './Authoritem';
 
 // Import styles
 import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';
-
-const useBookInfo = (book) => {
-    const fullTitle = book.series
-        ? `${book.series} - Tome ${book.volumeNumber || ''}: ${book.volumeTitle || book.title}`
-        : book.title;
-
-    const authors = book.authors.map(a => `${a.firstName} ${a.lastName}`.trim()).join(', ');
-    const publishers = book.publishers.map(p => p.name).join(', ');
-    const pubYear = new Date(book.publishedDate).getFullYear();
-
-    return { fullTitle, authors, publishers, pubYear };
-};
 
 const ActionButtons = ({ bookId, onDelete }) => {
     const navigate = useNavigate();
@@ -41,7 +30,7 @@ const ActionButtons = ({ bookId, onDelete }) => {
 };
 
 export const BookItemMini = ({ book }) => {
-    const { fullTitle } = useBookInfo(book);
+    const { fullTitle } = getBookInfo(book);
     const navigate = useNavigate();
     return (
         <div
@@ -54,7 +43,7 @@ export const BookItemMini = ({ book }) => {
 
 export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
     const navigate = useNavigate();
-    const { fullTitle } = useBookInfo(book);
+    const { fullTitle } = getBookInfo(book);
     const publishers = book.publishers.map(p => p.name).join(', ');
 
     return (
@@ -99,7 +88,7 @@ export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
 };
 
 export const BookItemFull = ({ book, onStatusChange, onDelete }) => {
-    const { fullTitle, authors, publishers, pubYear } = useBookInfo(book);
+    const { fullTitle, authors, publishers, pubYear } = getBookInfo(book);
 
     return (
         <div className={styles.bookItem}>

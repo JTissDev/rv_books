@@ -7,15 +7,8 @@ import Header from '../../components/Layout/Header';
 import Footer from '../../components/Layout/Footer';
 import { AuthorListItem } from '../../components/ListItems/Authoritem';
 import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';
+import { getBookInfo } from '../../assets/utils/bookUtils';
 
-const getBookInfo = (book) => {
-    const fullTitle = book.series
-        ? `${book.series} - Tome ${book.volumeNumber || ''}: ${book.volumeTitle || book.title}`
-        : book.title;
-    const authors = book.authors.map(a => `${a.firstName} ${a.lastName}`.trim()).join(', ');
-    const publishers = book.publishers.map(p => p.name).join(', ');
-    return { fullTitle, authors, publishers };
-};
 
 const BookView = () => {
     const { id } = useParams();
