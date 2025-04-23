@@ -12,7 +12,7 @@ import {
   getBooksByAuthorAndPublisher,
   getBooksByPublisherAndStatus,
   getBooksByAuthorAndStatus
-} from '../api/bookClient';
+} from '../api/bookApi';
 
 export const fetchAllBooks = async () => {
   const { data } = await getBooks();
