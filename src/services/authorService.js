@@ -10,7 +10,8 @@ import {
 } from '../api/authorApi';
 
 export const fetchAllAuthors = async () => {
-  const { data } = await getAuthors();
+  const data = await getAuthors();
+  
   return data.sort((a, b) => a.lastName.localeCompare(b.lastName));
 };
 

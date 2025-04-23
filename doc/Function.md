@@ -2,10 +2,9 @@
 
 ## Structure du Projet
 
-
 ### Arborescence du Projet
 
-``` markdown
+```markdown
 src/
 ├── components/
 │   ├── Aside/
@@ -37,7 +36,24 @@ src/
 │   ├── bookApi.js
 │   └── publisherApi.js
 ├── styles/
-│   └── [Fichiers SCSS]
+│   ├── sources/
+│   │   ├── partials/
+│   │   │   ├── _variables.scss
+│   │   │   ├── _mixins.scss
+│   │   │   └── _colorPalette.scss
+│   │   ├── pages/
+│   │   │   ├── HomePage.module.scss
+│   │   │   ├── Books.module.scss
+│   │   │   └── Book.module.scss
+│   │   ├── components/
+│   │   │   ├── LayoutStyle/
+│   │   │   │   ├── Header.module.scss
+│   │   │   │   ├── Navbar.module.scss
+│   │   │   │   └── Footer.module.scss
+│   │   │   ├── ListItems/
+│   │   │   │   └── BookItem.module.scss
+│   │   │   └── Aside.module.scss
+│   │   └── main.scss
 ├── assets/
 │   ├── constant/
 │   │   └── statusOption.js
@@ -45,9 +61,12 @@ src/
 │       └── bookUtils.js
 ├── routes/
 │   └── AppRoutes.jsx
-
+├── App.jsx
+├── index.js
+└── setupTests.js
 ```
-### Structure 
+
+### Structure
 
 - **`src/components`** : Composants réutilisables (Header, Footer, Navbar, etc.).
 - **`src/pages`** : Pages principales de l'application (Home, Books, Authors, etc.).
@@ -55,17 +74,11 @@ src/
 - **`src/api`** : Gestion des appels API.
 - **`src/styles`** : Fichiers SCSS pour la gestion des styles.
 - **`src/assets`** : Constantes, utilitaires et ressources partagées.
+- **`src/routes`** : Gestion des routes de l'application.
 
 ---
 
 ## Liste des Fonctions par Fichier
-
-### `src\services\apiService.js`
-- `getAuthors`: Récupère la liste des auteurs depuis l'API.
-- `getPublishers`: Récupère la liste des éditeurs depuis l'API.
-- `getBooks`: Récupère la liste des livres depuis l'API.
-
----
 
 ### `src\api\apiClient.js`
 - `get`: Effectue une requête GET vers une URL donnée.
@@ -78,18 +91,36 @@ src/
 ### `src\services\bookService.js`
 - `fetchAllBooks`: Récupère tous les livres et les trie par titre.
 - `fetchBookDetail`: Récupère les détails d'un livre par son ID.
+- `saveBook`: Enregistre un nouveau livre.
+- `editBook`: Met à jour un livre existant.
+- `removeBook`: Supprime un livre.
+- `fetchBooksByAuthorId`: Récupère les livres d'un auteur spécifique.
+- `fetchBooksByPublisherId`: Récupère les livres d'un éditeur spécifique.
+- `fetchBooksByStatus`: Récupère les livres par statut.
+- `fetchBooksByAuthorAndPublisher`: Récupère les livres par auteur et éditeur.
+- `fetchBooksByPublisherAndStatus`: Récupère les livres par éditeur et statut.
+- `fetchBooksByAuthorAndStatus`: Récupère les livres par auteur et statut.
 
 ---
 
 ### `src\services\authorService.js`
 - `fetchAllAuthors`: Récupère tous les auteurs et les trie par nom.
 - `fetchAuthorDetail`: Récupère les détails d'un auteur par son ID.
+- `saveAuthor`: Enregistre un nouvel auteur.
+- `editAuthor`: Met à jour un auteur existant.
+- `removeAuthor`: Supprime un auteur.
+- `fetchAuthorsByBookId`: Récupère les auteurs d'un livre spécifique.
+- `fetchAuthorsByPublisherId`: Récupère les auteurs d'un éditeur spécifique.
 
 ---
 
 ### `src\services\publisherService.js`
 - `fetchAllPublishers`: Récupère tous les éditeurs et les trie par nom.
 - `fetchPublisherDetail`: Récupère les détails d'un éditeur par son ID.
+- `savePublisher`: Enregistre un nouvel éditeur.
+- `editPublisher`: Met à jour un éditeur existant.
+- `removePublisher`: Supprime un éditeur.
+- `fetchPublishersByBookId`: Récupère les éditeurs d'un livre spécifique.
 
 ---
 

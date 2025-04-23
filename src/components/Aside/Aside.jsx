@@ -17,17 +17,23 @@ import styles from '../../styles/sources/components/Aside.module.scss';
 const Aside = () => {
     const [authors, setAuthors] = useState([]);
     const [publishers, setPublishers] = useState([]);
+    const [error, setError] = useState(null);
 
     const [selectedAuthorId, setSelectedAuthorId] = useState(null);
     const [selectedPublisherId, setSelectedPublisherId] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const authorsData = await fetchAllAuthors();
-            setAuthors(authorsData);
+            try {
+                const authorsData = await fetchAllAuthors();
+                setAuthors(authorsData);
 
-            const publishersData = await fetchAllPublishers();
-            setPublishers(publishersData);
+                const publishersData = await fetchAllPublishers();
+                setPublishers(publishersData);
+            } catch (err) {
+                setError('Erreur lors du chargement des données.');
+                console.error(err);
+            }
         };
 
         fetchData();
@@ -39,21 +45,26 @@ const Aside = () => {
                 <h2>Informations supplémentaires</h2>
             </header>
             <main className={styles.asideMain}>
-                <SearchableList
-                    title="Auteurs"
-                    items={authors}
-                    getLabel={(auteur) => `${auteur.firstName} ${auteur.lastName}`}
-                    getValue={(auteur) => auteur.id}
-                    onSelect={(id) => setSelectedAuthorId(id)}
-                />
-
-                <SearchableList
-                    title="Éditeurs"
-                    items={publishers}
-                    getLabel={(editeur) => editeur.name}
-                    getValue={(editeur) => editeur.id}
-                    onSelect={(id) => setSelectedPublisherId(id)}
-                />
+                {error ? (
+                    <p>{error}</p>
+                ) : (
+                    <>
+                        <SearchableList
+                            title="Auteurs"
+                            items={authors}
+                            getLabel={(auteur) => `${auteur.firstName} ${auteur.lastName}`}
+                            getValue={(auteur) => auteur.id}
+                            onSelect={(id) => setSelectedAuthorId(id)}
+                        />
+                        <SearchableList
+                            title="Éditeurs"
+                            items={publishers}
+                            getLabel={(editeur) => editeur.name}
+                            getValue={(editeur) => editeur.id}
+                            onSelect={(id) => setSelectedPublisherId(id)}
+                        />
+                    </>
+                )}
             </main>
         </aside>
     );
