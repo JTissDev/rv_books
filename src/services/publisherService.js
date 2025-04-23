@@ -6,9 +6,8 @@ import {
     createPublisher,
     updatePublisher,
     deletePublisher,
-    getPublishersByBookId,
-    getPublishersByAuthorId
-} from './api/publisherApi';
+    getPublishersByBookId
+} from '../api/publisherApi';
 
 export const fetchAllPublishers = async () => {
     const { data } = await getPublishers();
@@ -40,8 +39,5 @@ export const fetchPublishersByBookId = async (bookId) => {
     return data;
 };
 
-export const fetchPublishersByAuthorId = async (authorId) => {
-    const { data } = await getPublishersByAuthorId(authorId);
-    return data;
-};
+
 

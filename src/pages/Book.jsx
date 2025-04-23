@@ -10,7 +10,9 @@ import{STATUS_OPTIONS} from '../assets/constant/statusOption';
 import { getBookInfo } from '../assets/utils/bookUtils';
 
 // Import Services
-import apiService from '../services/apiService';
+import {fetchAllBooks,
+    fetchBookDetail} 
+    from '../services/bookService';
 
 // Import components
 import Header from '../components/Layout/Header';
@@ -28,7 +30,16 @@ const useLoadedBook = () => {
 
     useEffect(() => {
         if (!book) {
-            apiService.getBookById(id).then(setBook);
+            fetchBookDetail(id).then((data) => {
+                if (data.status === STATUS_OPTIONS.SUCCESS) {
+                    setBook(data.book);
+                } else {
+                    console.error('Error fetching book:', data.error);
+                }
+            });
+        }
+        return () => {
+            // Cleanup function if needed   
         }
     }, [id, book]);
 

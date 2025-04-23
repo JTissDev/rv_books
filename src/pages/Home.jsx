@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 
 // Import Services
-import apiService from '../services/apiService';
+import { fetchAllBooks } from '../services/bookService';
 
 // Import components
 import Header from '../components/Layout/Header';
@@ -22,7 +22,7 @@ const HomePage = () => {
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const allBooks = await apiService.getBooks();
+            const allBooks = await fetchAllBooks();
             setMesLivres(allBooks);
         };
 

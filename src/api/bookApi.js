@@ -1,8 +1,8 @@
 // src/api/bookClient.js
 import apiClient from './apiClient';
 
-import { getAuthorsByBookId } from './AuthorApi';
-import { getPublishersByBookId } from './PublisherApi';
+import { getAuthorsByBookId } from './authorApi';
+import { getPublishersByBookId } from './publisherApi';
 
 export const getBooks = () => apiClient.get('/books');
 export const getBookById = (id) => apiClient.get(`/books/${id}`);

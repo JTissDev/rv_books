@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Import Services
-import apiService from '../services/apiService';
+import {fetchAllBooks} from '../services/bookService';
 
 // Import components
 import Header from '../components/Layout/Header';
@@ -21,7 +21,7 @@ const Books = () => {
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const result = await apiService.getBooks();
+            const result = await fetchAllBooks();
             const sortedBooks = result.sort((a, b) => a.title.localeCompare(b.title));
             setBooks(sortedBooks);
         };

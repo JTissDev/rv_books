@@ -5,7 +5,8 @@ import React, { useState, useEffect } from 'react';
 import clsx from "clsx";
 
 // Import Services
-import apiService from '../../services/apiService';
+import {fetchAllAuthors} from '../../services/authorService';
+import {fetchAllPublishers} from '../../services/publisherService';
 
 // Import components
 import SearchableList from './SearchableList';
@@ -22,10 +23,10 @@ const Aside = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const authorsData = await apiService.getAuthors();
+            const authorsData = await fetchAllAuthors();
             setAuthors(authorsData);
 
-            const publishersData = await apiService.getPublishers();
+            const publishersData = await fetchAllPublishers();
             setPublishers(publishersData);
         };
 

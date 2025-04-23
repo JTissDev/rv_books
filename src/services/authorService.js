@@ -7,7 +7,7 @@ import {
   deleteAuthor,
   getAuthorsByBookId,
   getAuthorsByPublisherId
-} from './api/authorApi';
+} from '../api/authorApi';
 
 export const fetchAllAuthors = async () => {
   const { data } = await getAuthors();
