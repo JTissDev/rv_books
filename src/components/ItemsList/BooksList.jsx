@@ -1,13 +1,21 @@
 // BooksList.jsx
+
+// import libraries
 import React from 'react';
+
+// Import Services
+
+// Import components
 import {BookItemPreview} from '../ListItems/BookItem';
+
+// Import styles
 import styles from '../../styles/sources/components/HomePage/BookList.module.scss';
 
 const BooksList = ({ books }) => {
     if (!books || books.length === 0) {
         return <p className={styles.empty}>Aucun livre à afficher.</p>;
     }
-    console.log('BooksList', books); // Debug to check the books array
+    //console.log('BooksList', books); // Debug to check the books array
     
     return (
         <section className={styles.listSection}>

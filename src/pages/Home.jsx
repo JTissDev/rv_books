@@ -1,10 +1,21 @@
 // HomePage.jsx
+
+// import libraries
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header/Header';
-import Aside from '../components/Aside/Aside';
-import BooksList from '../components/HomePageMain/BooksList';
+
+// Import Services
 import apiService from '../services/apiService';
+
+// Import components
+import Header from '../components/Layout/Header';
+import Footer from '../components/Layout/Footer';
+import Aside from '../components/Aside/Aside';
+import BooksList from '../components/ItemsList/BooksList';
+
+// Import styles
 import styles from '../styles/sources/pages/HomePage.module.scss';
+
+
 
 const HomePage = () => {
     const [mesLivres, setMesLivres] = useState([]);
@@ -19,7 +30,7 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="page">
+        <>
             <Header />
             <main className={styles.main}>
                 <div className="content">
@@ -28,10 +39,8 @@ const HomePage = () => {
                 </div>
                 <Aside />
             </main>
-            <footer className={styles.footer}>
-                <p>&copy; 2023 RV Books. Tous droits réservés.</p>
-            </footer>
-        </div>
+            <Footer />
+        </>
     );
 };
 
