@@ -8,7 +8,7 @@ import React from 'react';
 import Navbar from './Navbar';
 
 // Import styles
-import headerStyles from '../../styles/sources/components/LayoutStyle/Header.module.scss';
+import headerStyles from '../../styles/sources/components/Layout/Header.module.scss';
 
 const Header = () => {
     return (

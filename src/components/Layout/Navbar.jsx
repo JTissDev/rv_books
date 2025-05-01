@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 // Import components
 
 // Import styles
-import styles from '../../styles/sources/components/LayoutStyle/Navbar.module.scss';
+import styles from '../../styles/sources/components/Layout/Navbar.module.scss';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);

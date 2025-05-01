@@ -8,7 +8,7 @@ import React from 'react';
 // Import components
 
 // Import styles
-import styles from '../../styles/sources/components/LayoutStyle/Footer.module.scss';
+import styles from '../../styles/sources/components/Layout/Footer.module.scss';
 
 const Footer = () => {
     return (

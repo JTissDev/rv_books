@@ -5,7 +5,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Import Assets
-import{STATUS_OPTIONS} from '../../assets/constant/statusOption';
+import { STATUS_OPTIONS } from '../../assets/constant/statusOption';
 import { getBookInfo } from '../../assets/utils/bookUtils';
 
 // Import Services
@@ -47,8 +47,8 @@ export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
     const publishers = book.publishers.map(p => p.name).join(', ');
 
     return (
-        <fieldset className={styles.bookItem} 
-        onClick={() => navigate(`/book/view-${book.id}`, { state: { book } })}>
+        <fieldset className={styles.bookItem}
+            onClick={() => navigate(`/book/view/${book.id}`, { state: { book } })}>
             <h3 className={styles.title}>{fullTitle}</h3>
             <section className={styles.topSection}>
                 <div className={styles.cover}></div>
@@ -81,7 +81,9 @@ export const BookItemPreview = ({ book, onStatusChange, onDelete }) => {
             <footer className={styles.footer} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.isbn}>🧾 ISBN: {book.isbn || 'N/A'}</div>
                 <ActionButtons bookId={book.id} onDelete={onDelete} />
-                <div className={styles.price}>💰 {book.price.toFixed(2)} €</div>
+                <div className={styles.price}>
+                    💰 {typeof book.price === 'number' ? `${book.price.toFixed(2)} €` : 'Prix non disponible'}
+                </div>
             </footer>
         </fieldset>
     );
@@ -124,7 +126,9 @@ export const BookItemFull = ({ book, onStatusChange, onDelete }) => {
             <div className={styles.footer}>
                 <div className={styles.isbn}>🧾 ISBN: {book.isbn || 'N/A'}</div>
                 <ActionButtons bookId={book.id} onDelete={onDelete} />
-                <div className={styles.price}>💰 {book.price.toFixed(2)} €</div>
+                <div className={styles.price}>
+                    💰 {typeof book.price === 'number' ? `${book.price.toFixed(2)} €` : 'Prix non disponible'}
+                </div>
             </div>
         </div>
     );

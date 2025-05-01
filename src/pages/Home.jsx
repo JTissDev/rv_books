@@ -42,7 +42,7 @@ const HomePage = () => {
                     <h2>Bienvenue sur RV Books</h2>
                     {error ? <p>{error}</p> : <BooksList books={mesLivres} />}
                 </div>
-                <Aside />
+                <Aside /> {/* Assurez-vous que ce composant est bien rendu */}
             </main>
             <Footer />
         </>
