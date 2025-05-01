@@ -1,12 +1,26 @@
 // AuthorItem.jsx
+
+// import libraries
 import React from 'react';
 
-const AuthorItem = ({ author }) => {
+// Import Services
+
+// Import components
+
+// Import styles
+
+export const AuthorListItem = ({ author }) => {
     return (
-        <div>
-            {author.firstName} {author.lastName}
-        </div>
+        <li>
+            ✍️  {author.firstName} {author.lastName}
+        </li>
     );
 };
 
-export default AuthorItem;
+export const AuthorItemSelect = ({ author }) => {
+    return <option key={author.id}
+        value={author.id}>
+        {author.lastName} {author.firstName}
+    </option>;
+}
+

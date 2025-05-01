@@ -1,6 +1,14 @@
+// Header.jsx
+
+// import libraries
 import React from 'react';
+
+// Import Services
+// Import components
 import Navbar from './Navbar';
-import headerStyles from '../../styles/sources/components/Header.module.scss';
+
+// Import styles
+import headerStyles from '../../styles/sources/components/Layout/Header.module.scss';
 
 const Header = () => {
     return (

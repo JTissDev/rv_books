@@ -1,66 +1,103 @@
 # RV Books
 
-API de Gestion de Bibliothèque Privée
+Application Web pour la Gestion de Bibliothèque Privée
 
 ## Description
 
-RV Books est une application Spring Boot qui permet de gérer une bibliothèque privée. Elle offre des fonctionnalités pour ajouter, mettre à jour, supprimer et rechercher des livres.
+RV Books est une application web développée en React qui permet de gérer une bibliothèque privée. Elle offre des fonctionnalités pour consulter, ajouter, modifier et supprimer des livres, ainsi que pour gérer les auteurs et éditeurs associés.
+
+## Fonctionnalités
+
+- **Livres** :
+  - Afficher la liste des livres.
+  - Ajouter un nouveau livre.
+  - Modifier ou supprimer un livre existant.
+  - Rechercher des livres par statut, auteur ou éditeur.
+- **Auteurs** :
+  - Afficher la liste des auteurs.
+  - Ajouter, modifier ou supprimer un auteur.
+- **Éditeurs** :
+  - Afficher la liste des éditeurs.
+  - Ajouter, modifier ou supprimer un éditeur.
+- **Thèmes** :
+  - Basculer entre les thèmes clair et sombre.
 
 ## Prérequis
 
-- Java 11
-- Maven 3.6+
-- MySQL 8.0+
+- **Node.js** : Version 16 ou supérieure
+- **npm** ou **yarn** : Gestionnaire de paquets
 
 ## Installation
 
-1. Clonez le dépôt :
+1. **Clonez le dépôt :**
 
    ```sh
    git clone https://github.com/jtissdev/rv_books.git
    cd rv_books
    ```
 
-2. Configurez votre base de données MySQL et mettez à jour les fichiers de configuration dans resources :
-
-- application.properties
-- application-dev.properties
-- application-prod.properties
-- application-test.properties
-- application-show.properties
-
-3. Exécutez le script SQL pour créer la base de données et insérer des données de test :
+2. **Installez les dépendances :**
 
    ```sh
-   mysql -u root -p < scripts/setup_db.sql
+   npm install
    ```
 
-4. Compilez et packagez l'application :
+3. **Configurez les variables d'environnement :**
+
+   Créez un fichier `.env` à la racine du projet et configurez l'URL de l'API :
+
+   ```env
+   REACT_APP_API_URL=http://votre-api-url
+   ```
+
+## Lancer l'application
+
+1. **En mode développement :**
 
    ```sh
-   mvn clean package
+   npm start
    ```
 
-## Exécution
-Pour exécuter l'application avec un profil spécifique (par exemple, dev), utilisez la commande suivante :
+   L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000).
 
-```sh
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
-```
+2. **Pour générer une version de production :**
 
-## Utilisation
-L'API expose les endpoints suivants :
+   ```sh
+   npm run build
+   ```
 
-- GET /books : Récupère tous les livres
-- POST /books : Ajoute un nouveau livre
-- GET /books/{id} : Récupère un livre par son ID
-- PUT /books/{id} : Met à jour un livre par son ID
-- DELETE /books/{id} : Supprime un livre par son ID
-- POST /books/{id}/moveToOwned : Déplace un livre vers le statut "owned"
-- GET /books/search : Recherche des livres par différents critères
+   Les fichiers de production seront générés dans le dossier `build`.
 
-## Contribuer
-Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou ouvrir une issue pour discuter des changements que vous souhaitez apporter.
+## Structure du projet
+
+- **`src/components`** : Composants réutilisables (Header, Footer, Navbar, etc.).
+- **`src/pages`** : Pages principales de l'application (Home, Books, Authors, etc.).
+- **`src/services`** : Services pour interagir avec l'API.
+- **`src/styles`** : Fichiers SCSS pour la gestion des styles.
+- **`src/assets`** : Constantes, utilitaires et ressources partagées.
+
+## API utilisée
+
+L'application utilise une API REST pour gérer les données des livres, auteurs et éditeurs. Assurez-vous que l'API est opérationnelle et accessible à l'URL configurée dans le fichier `.env`. Voici quelques exemples d'endpoints :
+
+- **GET** `/books` : Récupère tous les livres.
+- **POST** `/books` : Ajoute un nouveau livre.
+- **GET** `/authors` : Récupère tous les auteurs.
+- **GET** `/publishers` : Récupère tous les éditeurs.
+
+## Contribution
+
+Les contributions sont les bienvenues ! Pour contribuer :
+
+1. Forkez le dépôt.
+2. Créez une branche pour vos modifications : `git checkout -b feature/nom-de-la-fonctionnalite`.
+3. Soumettez une pull request avec une description claire des changements.
+
+## Auteur
+
+Ce projet a été développé par **jtissdev**.  
+Pour toute question ou suggestion, vous pouvez me contacter via [mon profil GitHub](https://github.com/jtissdev).
 
 ## Licence
-Ce projet est sous licence Apache License 2.0. Voir le fichier LICENSE pour plus de détails.
+
+Ce projet est sous licence MIT. Consultez le fichier `LICENSE` pour plus de détails.

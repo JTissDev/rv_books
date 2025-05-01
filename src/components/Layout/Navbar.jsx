@@ -1,7 +1,15 @@
 // Navbar.jsx
+
+// import libraries
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from '../../styles/sources/components/Navbar.module.scss';
+
+// Import Services
+
+// Import components
+
+// Import styles
+import styles from '../../styles/sources/components/Layout/Navbar.module.scss';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +23,8 @@ const Navbar = () => {
             name: 'Books',
             path: '/books',
             submenu: [
-                { name: 'Ajouter', path: '/books/new' },
+                { name: 'Tous', path: '/books' },
+                { name: 'Ajouter', path: '/book' },
                 { name: 'Rechercher', path: '/books/search' },
             ],
         },
@@ -23,7 +32,8 @@ const Navbar = () => {
             name: 'Auteurs',
             path: '/authors',
             submenu: [
-                { name: 'Ajouter', path: '/authors/new' },
+                { name: 'Tous', path: '/authors' },
+                { name: 'Ajouter', path: '/author' },
                 { name: 'Rechercher', path: '/authors/search' },
             ],
         },
@@ -31,7 +41,8 @@ const Navbar = () => {
             name: 'Éditeurs',
             path: '/publishers',
             submenu: [
-                { name: 'Ajouter', path: '/publishers/new' },
+                { name: 'Tous', path: '/publishers' },
+                { name: 'Ajouter', path: '/publisher' },
                 { name: 'Rechercher', path: '/publishers/search' },
             ],
         },

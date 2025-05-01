@@ -1,37 +1,51 @@
 // HomePage.jsx
+
+// import libraries
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header/Header';
+
+// Import Services
+import { fetchAllBooks } from '../services/bookService';
+
+// Import components
+import Header from '../components/Layout/Header';
+import Footer from '../components/Layout/Footer';
 import Aside from '../components/Aside/Aside';
-import BooksList from '../components/HomePageMain/BooksList';
-import apiService from '../services/apiService';
+import BooksList from '../components/ItemsList/BooksList';
+
+// Import styles
 import styles from '../styles/sources/pages/HomePage.module.scss';
 
 const HomePage = () => {
     const [mesLivres, setMesLivres] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const allBooks = await apiService.getBooks();
-            setMesLivres(allBooks);
+            
+            try {
+                const allBooks = await fetchAllBooks();
+                setMesLivres(allBooks);
+            } catch (err) {
+                setError('Erreur lors du chargement des livres.');
+                console.error(err);
+            }
         };
 
         fetchBooks();
     }, []);
 
     return (
-        <div className="page">
+        <>
             <Header />
             <main className={styles.main}>
                 <div className="content">
                     <h2>Bienvenue sur RV Books</h2>
-                    <BooksList books={mesLivres} />
+                    {error ? <p>{error}</p> : <BooksList books={mesLivres} />}
                 </div>
-                <Aside />
+                <Aside /> {/* Assurez-vous que ce composant est bien rendu */}
             </main>
-            <footer className={styles.footer}>
-                <p>&copy; 2023 RV Books. Tous droits réservés.</p>
-            </footer>
-        </div>
+            <Footer />
+        </>
     );
 };
 

@@ -22,9 +22,13 @@ body {
   margin: 0;
   padding: 0;
 
-  main{
+  main {
     padding: 20px;
     display: flex;
+  }
+
+  aside {
+    display: block; // Assurez-vous que l'aside est visible
   }
 }
 

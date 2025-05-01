@@ -1,5 +1,14 @@
 // SearchableList.jsx
+
+// import libraries
 import React, { useState } from 'react';
+
+// Import Services
+
+// Import components
+import { AuthorItemSelect } from '../ListItems/Authoritem';
+
+// Import styles
 import styles from '../../styles/sources/components/SearchableList.module.scss';
 
 const SearchableList = ({ title, items, onSelect, getLabel, getValue, renderItem }) => {
@@ -37,6 +46,7 @@ const SearchableList = ({ title, items, onSelect, getLabel, getValue, renderItem
                         </option>
                     );
                 })}
+                <option value="new">Ajouter un nouvel {title.toLowerCase()}</option>   
             </select>
         </section>
     );
