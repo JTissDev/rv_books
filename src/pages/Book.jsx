@@ -21,61 +21,47 @@ import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
 import { BookItemFull } from '../components/ListItems/BookItem';
 import { AuthorListItem } from '../components/ListItems/Authoritem';
+import BookForm from '../components/Forms/BookForm';
 
 // Import styles
 import styles from '../styles/sources/components/ListItems/BookItem.module.scss';
+
 
 const useLoadedBook = () => {
     const { id } = useParams();
     const { state } = useLocation();
     const [book, setBook] = useState(state?.book || null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!book) {
-            fetchBookDetail(id).then((data) => {
-                if (data.status === STATUS_OPTIONS.SUCCESS) {
-                    setBook(data.book);
-                } else {
-                    console.error('Error fetching book:', data.error);
-                }
-            });
-        }
-        return () => {
-            // Cleanup function if needed   
+        if (!book && id) {
+            fetchBookDetail(id)
+                .then((data) => {
+                    if (data.status === STATUS_OPTIONS.SUCCESS) {
+                        setBook(data.book);
+                    } else {
+                        setError('Erreur lors du chargement du livre');
+                        console.error('Error fetching book:', data.error);
+                    }
+                })
+                .catch(() => setError('Impossible de récupérer le livre'));
         }
     }, [id, book]);
 
-    return book;
+    return { book, error };
 };
 
 export const NewBook = () => {
-    console.log('NewBook component loaded');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Logic to create a new book
+    const handleSubmit = (formData) => {
+        console.log('Creating new book with:', formData);
+        // TODO: call createBook(formData)
     };
 
     return (
         <>
             <Header />
             <main className="content">
-                <form onSubmit={handleSubmit}>
-                    <h2>Create a New Book</h2>
-                    <label>
-                        Title:
-                        <input type="text" name="title" required />
-                    </label>
-                    <label>
-                        Author:
-                        <input type="text" name="author" required />
-                    </label>
-                    <label>
-                        Description:
-                        <textarea name="description" required></textarea>
-                    </label>
-                    <button type="submit">Create Book</button>
-                </form>
+                <BookForm onSubmit={handleSubmit} mode="create" />
             </main>
             <Footer />
         </>
@@ -83,42 +69,21 @@ export const NewBook = () => {
 };
 
 export const EditBook = ({ onUpdate }) => {
-    console.log('EditBook component loaded');
+    const { book, error } = useLoadedBook();
 
-    const book = useLoadedBook();
+    if (error) return <p>{error}</p>;
     if (!book) return <p>Chargement...</p>;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Logic to update the book
-        const updatedBook = {
-            title: e.target.title.value,
-            author: e.target.author.value,
-            description: e.target.description.value,
-        };
-        onUpdate(updatedBook);
+    const handleSubmit = (formData) => {
+        console.log('Updating book:', book.id, formData);
+        onUpdate({ id: book.id, ...formData });
     };
 
     return (
         <>
             <Header />
             <main className="content">
-                <form onSubmit={handleSubmit}>
-                    <h2>Edit Book</h2>
-                    <label>
-                        Title:
-                        <input type="text" name="title" defaultValue={book.title} required />
-                    </label>
-                    <label>
-                        Author:
-                        <input type="text" name="author" defaultValue={book.author} required />
-                    </label>
-                    <label>
-                        Description:
-                        <textarea name="description" defaultValue={book.description} required></textarea>
-                    </label>
-                    <button type="submit">Update Book</button>
-                </form>
+                <BookForm initialData={book} onSubmit={handleSubmit} mode="edit" />
             </main>
             <Footer />
         </>
