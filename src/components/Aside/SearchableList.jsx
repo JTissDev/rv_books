@@ -46,6 +46,7 @@ const SearchableList = ({ title, items, onSelect, getLabel, getValue, renderItem
                         </option>
                     );
                 })}
+                <option value="new">Ajouter un nouvel {title.toLowerCase()}</option>   
             </select>
         </section>
     );
