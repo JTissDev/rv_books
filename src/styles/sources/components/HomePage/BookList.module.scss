@@ -1,0 +1,41 @@
+// ----- /styles/sources/components/HomePage/BookList.module.scss -----
+
+.listSection {
+    padding: 2rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+  }
+  
+  .bookList {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .bookItem {
+    flex: 1 1 200px;
+    padding: 1rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    background-color: var(--header-background);
+    transition: transform 0.2s ease;
+  
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+  
+  .empty {
+    padding: 2rem;
+    text-align: center;
+    font-style: italic;
+    color: var(--text-color);
+  }
+  
