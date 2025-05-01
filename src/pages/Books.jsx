@@ -9,6 +9,7 @@ import {fetchAllBooks} from '../services/bookService';
 
 // Import components
 import Header from '../components/Layout/Header';
+import Aside from '../components/Aside/Aside';
 import Footer from '../components/Layout/Footer';
 import { BookItemFull } from '../components/ListItems/BookItem';
 
@@ -49,6 +50,7 @@ const Books = () => {
                         </div>
                     ))}
                 </div>
+                <Aside />
             </main>
             <Footer />
         </>

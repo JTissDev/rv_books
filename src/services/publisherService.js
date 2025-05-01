@@ -10,7 +10,7 @@ import {
 } from '../api/publisherApi';
 
 export const fetchAllPublishers = async () => {
-    const { data } = await getPublishers();
+    const  data  = await getPublishers();
     return data.sort((a, b) => a.name.localeCompare(b.name));
 };
 

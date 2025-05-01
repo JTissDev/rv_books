@@ -6,19 +6,21 @@ import { useNavigate } from 'react-router-dom';
 import { useParams, useLocation } from 'react-router-dom';
 
 // Import Assets
-import{STATUS_OPTIONS} from '../assets/constant/statusOption';
+import { STATUS_OPTIONS } from '../assets/constant/statusOption';
 import { getBookInfo } from '../assets/utils/bookUtils';
 
 // Import Services
-import {fetchAllBooks,
-    fetchBookDetail} 
+import {
+    fetchAllBooks,
+    fetchBookDetail
+}
     from '../services/bookService';
 
 // Import components
 import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
 import { BookItemFull } from '../components/ListItems/BookItem';
-import {AuthorListItem} from '../components/ListItems/Authoritem';
+import { AuthorListItem } from '../components/ListItems/Authoritem';
 
 // Import styles
 import styles from '../styles/sources/components/ListItems/BookItem.module.scss';
@@ -47,6 +49,8 @@ const useLoadedBook = () => {
 };
 
 export const NewBook = () => {
+    console.log('NewBook component loaded');
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // Logic to create a new book
@@ -73,12 +77,14 @@ export const NewBook = () => {
                     <button type="submit">Create Book</button>
                 </form>
             </main>
-            <Footer/>
+            <Footer />
         </>
     );
 };
 
-export const EditBook = ({onUpdate }) => {
+export const EditBook = ({ onUpdate }) => {
+    console.log('EditBook component loaded');
+
     const book = useLoadedBook();
     if (!book) return <p>Chargement...</p>;
 
@@ -114,12 +120,14 @@ export const EditBook = ({onUpdate }) => {
                     <button type="submit">Update Book</button>
                 </form>
             </main>
-            <Footer/>
+            <Footer />
         </>
     );
 };
 
 export const ViewBook = () => {
+    console.log('ViewBook component loaded');
+
     const book = useLoadedBook();
     if (!book) return <p>Chargement...</p>;
 
@@ -144,7 +152,7 @@ export const ViewBook = () => {
                             <div>🏢 {publishers}</div>
                             <div>📚 {book.genre}</div>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -154,7 +162,9 @@ export const ViewBook = () => {
 
                 <div className={styles.footer}>
                     <div className={styles.isbn}>🧾 ISBN: {book.isbn || 'N/A'}</div>
-                    <div className={styles.price}>💰 {book.price.toFixed(2)} €</div>
+                    <div className={styles.price}>
+                        💰 {typeof book.price === 'number' ? `${book.price.toFixed(2)} €` : 'Prix non disponible'}
+                    </div>
                 </div>
             </main>
             <Footer />

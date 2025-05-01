@@ -1,12 +1,13 @@
 // src/api/apiClient.js
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://192.168.1.42:8080/rv-books';
+const API_URL = process.env.REACT_APP_API_URL ;
 
 
 const apiClient = {
-    get: async (url, options = {}) => {
+    get: async (url, options = {}) => {        
         const response = await fetch(`${API_URL}${url}`, {
             method: 'GET',
+            credentials: 'include', // Inclut les cookies si nécessaires
             headers: { 'Content-Type': 'application/json', ...options.headers },
             ...options,
         });
@@ -18,6 +19,7 @@ const apiClient = {
     post: async (url, body, options = {}) => {
         const response = await fetch(`${API_URL}${url}`, {
             method: 'POST',
+            credentials: 'include', // Inclut les cookies si nécessaires
             headers: { 'Content-Type': 'application/json', ...options.headers },
             body: JSON.stringify(body),
             ...options,

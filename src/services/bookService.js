@@ -15,7 +15,7 @@ import {
 } from '../api/bookApi';
 
 export const fetchAllBooks = async () => {
-  const { data } = await getBooks();
+  const data  = await getBooks();
   return data.sort((a, b) => a.title.localeCompare(b.title));
 };
 

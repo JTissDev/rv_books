@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Importing pages
 import Home from '../pages/Home';
 import Books from '../pages/Books';
-import {EditBook, NewBook, ViewBook} from '../pages/Book';
+import { EditBook, NewBook, ViewBook } from '../pages/Book';
 
 
 const AppRoutes = () => {
@@ -20,9 +20,9 @@ const AppRoutes = () => {
                 <Route path="/books/author-:id" element={<Books />} />
                 <Route path="/books/publisher-:id" element={<Books />} /> */}
                 {/* Book Pages */}
-                <Route path="/book/view-:id" element={<ViewBook />} />
-                <Route path="/book" element={<NewBook />} />
+                <Route path="/book/view/:id" element={<ViewBook />} /> 
                 <Route path="/book/:id" element={<EditBook />} />
+                <Route path="/book" element={<NewBook />} />
                 {/* Authors Pages */}
                 {/* <Route path="/authors" element={<Authors />} /> */}
                 {/* Author Pages */}
