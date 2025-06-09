@@ -72,10 +72,10 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
 
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
-            <h2>{mode === 'edit' ? 'Modifier le livre' : 'Ajouter un nouveau livre'}</h2>
+            <fieldset className="New_Book_Fieldset">
+                <legend>{mode === 'edit' ? 'Modifier le livre' : 'Ajouter un nouveau livre'}</legend>
 
-            <label>
-                Titre :
+                <label for="title">Titre du livre:</label>
                 <input
                     type="text"
                     name="title"
@@ -83,74 +83,98 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
                     onChange={handleChange}
                     required
                 />
-            </label>
 
-            <SearchableList
-                title="Auteurs"
-                items={authorsList}
-                getLabel={(a) => `${a.firstName} ${a.lastName}`}
-                getValue={(a) => a.id}
-                onSelect={handleAuthorsChange}
-            />
-            {formData.authors.length > 0 && (
-                <ul>
-                    {formData.authors.map(a => (
-                        <li key={a.id}>
-                            {a.firstName} {a.lastName}
-                            <button type="button" onClick={() => handleRemoveAuthor(a.id)}>❌</button>
-                        </li>
-                    ))}
-                </ul>
-            )}
+                <label>
+                    Statut :
+                    <select name="status" value={formData.status} onChange={handleChange}>
+                        {STATUS_OPTIONS.map((option) => (
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
+                    </select>
+                </label>
 
-            <SearchableList
-                title="Éditeurs"
-                items={publishersList}
-                getLabel={(p) => p.name}
-                getValue={(p) => p.id}
-                onSelect={handlePublishersChange}
-            />
-            {formData.publishers.length > 0 && (
-                <ul>
-                    {formData.publishers.map(p => (
-                        <li key={p.id}>
-                            {p.name}
-                            <button type="button" onClick={() => handleRemovePublisher(p.id)}>❌</button>
-                        </li>
-                    ))}
-                </ul>
-            )}
 
-            <label>
-                Description :
-                <textarea
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
 
-            <label>
-                Prix (€) :
-                <input
-                    type="number"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleChange}
-                    min="0"
-                    step="0.01"
-                />
-            </label>
+                <fieldset className="Authors_Search_List Serach_List">
+                    <SearchableList
+                        title="Auteurs"
+                        items={authorsList}
+                        getLabel={(a) => `${a.firstName} ${a.lastName}`}
+                        getValue={(a) => a.id}
+                        onSelect={handleAuthorsChange}
+                    />
+                    {formData.authors.length > 0 && (
+                        <ul>
+                            {formData.authors.map(a => (
+                                <li key={a.id}>
+                                    {a.firstName} {a.lastName}
+                                    <button type="button" onClick={() => handleRemoveAuthor(a.id)}>❌</button>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </fieldset>
 
-            <label>
-                Statut :
-                <select name="status" value={formData.status} onChange={handleChange}>
-                    {STATUS_OPTIONS.map((option) => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
-                    ))}
-                </select>
-            </label>
+                <fieldset className="details_Books_Feildset">
+                    <legend>Détails du livres</legend>
+
+                    <fieldset className="description_text_Area">
+                        <legend>description</legend>
+                        <textarea
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                            required
+                        />
+                    </fieldset>
+
+                    {/* bouton select collection si false simple si true num tome, titre tome isbn collection */}
+
+                </fieldset>
+
+                <fieldset className="publishers_Search_List Serach_List">
+                    <legend>edition</legend>
+
+                    <SearchableList
+                        title="Éditeurs"
+                        items={publishersList}
+                        getLabel={(p) => p.name}
+                        getValue={(p) => p.id}
+                        onSelect={handlePublishersChange}
+                    />
+                    {formData.publishers.length > 0 && (
+                        <ul>
+                            {formData.publishers.map(p => (
+                                <li key={p.id}>
+                                    {p.name}
+                                    <button type="button" onClick={() => handleRemovePublisher(p.id)}>❌</button>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+
+                    <label>
+                        Prix (€) :
+                        <input
+                            type="number"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            min="0"
+                            step="0.01"
+                        />
+                    </label>
+                </fieldset>
+
+
+
+            </fieldset>
+
+
+
+
+
+
 
             <button type="submit">
                 {mode === 'edit' ? 'Mettre à jour' : 'Créer'}
