@@ -9,8 +9,8 @@ RV Books est une application web développée en React qui permet de gérer une 
 ## Fonctionnalités
 
 - **Livres** :
-  - Afficher la liste des livres.
-  - Ajouter un nouveau livre.
+  - [X] Afficher la liste des livres.
+  - [X] Ajouter un nouveau livre.
   - Modifier ou supprimer un livre existant.
   - Rechercher des livres par statut, auteur ou éditeur.
 - **Auteurs** :
@@ -101,3 +101,26 @@ Pour toute question ou suggestion, vous pouvez me contacter via [mon profil GitH
 ## Licence
 
 Ce projet est sous licence MIT. Consultez le fichier `LICENSE` pour plus de détails.
+
+---
+
+## Développeur
+
+- **Auteur principal** : [jtissdev](https://github.com/jtissdev)
+- **Version actuelle** : 1.0.0
+
+### Informations pour les développeurs
+
+- **Changelog** :  
+  Retrouvez l’historique des modifications dans le fichier [`CHANGELOG.md`](./CHANGELOG.md).
+
+- **ToDo** :  
+  Les axes d’amélioration et tâches à venir sont listés dans [`doc/ToDo.md`](./doc/ToDo.md).
+
+- **Fonctions et structure** :  
+  La structure détaillée du projet et la liste des fonctions sont décrites dans [`doc/Function.md`](./doc/Function.md).
+
+- **Contact** :  
+  Pour toute question technique ou contribution, ouvrez une issue ou contactez l’auteur via GitHub.
+
+---
