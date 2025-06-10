@@ -11,7 +11,7 @@ import {fetchAllBooks} from '../services/bookService';
 import Header from '../components/Layout/Header';
 import Aside from '../components/Aside/Aside';
 import Footer from '../components/Layout/Footer';
-import { BookItemFull } from '../components/ListItems/BookItem';
+import { BookItemFull } from '../components/Items/BookItem';
 
 // Import styles
 import styles from '../styles/sources/pages/Books.module.scss';

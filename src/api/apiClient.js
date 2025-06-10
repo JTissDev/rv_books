@@ -4,14 +4,17 @@ const API_URL = process.env.REACT_APP_API_URL ;
 
 
 const apiClient = {
-    get: async (url, options = {}) => {        
+    get: async (url, options = {}) => {
+        console.log('API CALL:', `${API_URL}${url}`);
         const response = await fetch(`${API_URL}${url}`, {
             method: 'GET',
-            credentials: 'include', // Inclut les cookies si nécessaires
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json', ...options.headers },
             ...options,
         });
         if (!response.ok) {
+            const text = await response.text();
+            console.error('Réponse API non-OK:', text);
             throw new Error(`Erreur lors de la requête : ${response.statusText}`);
         }
         return await response.json();
