@@ -1,6 +1,6 @@
-@import '../partials/_variables.scss';
-@import '../partials/_mixins.scss';
-@import '../partials/_colorPalette.scss';
+@import '../../partials/_variables.scss';
+@import '../../partials/_mixins.scss';
+@import '../../partials/_colorPalette.scss';
 
 @include theme($light-theme);
 
@@ -11,7 +11,7 @@
     text-align: center;
     border-bottom: 2px solid var(--secondary-color);
 
-    .header-title {
+    &-title {
         font-size: 24px;
         font-weight: bold;
         margin: 0 0 10px;
