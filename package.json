@@ -15,10 +15,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "env:dev": "cp ./env/dev.env .env",
+    "env:prod": "cp ./env/prod.env .env",
+    "start": "npm run env:dev && react-scripts start",
     "start:dev": "env-cmd -f env/dev.env react-scripts start",
     "start:staging": "env-cmd -f env/staging.env react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run env:prod && react-scripts build",
     "build:prod": "env-cmd -f env/prod.env react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -43,5 +45,6 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0"
-  }
+  },
+  "homepage": "/rv_books"
 }

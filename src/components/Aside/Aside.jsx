@@ -5,11 +5,11 @@ import React, { useState, useEffect } from 'react';
 import clsx from "clsx";
 
 // Import Services
-import {fetchAllAuthors} from '../../services/authorService';
-import {fetchAllPublishers} from '../../services/publisherService';
+import { fetchAllAuthors } from '../../services/authorService';
+import { fetchAllPublishers } from '../../services/publisherService';
 
 // Import components
-import SearchableList from './SearchableList';
+import { SearchableList } from './SearchableList';
 
 // Import styles
 import styles from '../../styles/sources/components/Aside.module.scss';
