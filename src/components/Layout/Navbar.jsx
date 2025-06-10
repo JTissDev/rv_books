@@ -25,10 +25,10 @@ const Navbar = () => {
             submenu: [
                 { name: 'Tous', path: '/books' },
                 { name: 'Ajouter', path: '/book' },
-                { name: 'Rechercher', path: '/books/search' },
+                // { name: 'Rechercher', path: '/books/search' },
             ],
         },
-        {
+        /* {
             name: 'Auteurs',
             path: '/authors',
             submenu: [
@@ -36,8 +36,8 @@ const Navbar = () => {
                 { name: 'Ajouter', path: '/author' },
                 { name: 'Rechercher', path: '/authors/search' },
             ],
-        },
-        {
+        }, */
+        /* {
             name: 'Éditeurs',
             path: '/publishers',
             submenu: [
@@ -45,7 +45,7 @@ const Navbar = () => {
                 { name: 'Ajouter', path: '/publisher' },
                 { name: 'Rechercher', path: '/publishers/search' },
             ],
-        },
+        }, */
     ];
 
     const toggleMenu = () => {

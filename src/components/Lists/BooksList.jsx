@@ -6,7 +6,7 @@ import React from 'react';
 // Import Services
 
 // Import components
-import {BookItemPreview} from '../ListItems/BookItem';
+import {BookItemPreview} from '../Items/BookItem';
 
 // Import styles
 import styles from '../../styles/sources/components/ListItems/BookItem.module.scss';

@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import styles from '../../styles/sources/components/Forms/BookForm.module.scss';
 import { fetchAllAuthors } from '../../services/authorService';
 import { fetchAllPublishers } from '../../services/publisherService';
+import { fetchCategories, addCategory } from '../../services/categoryService'; // Nouvel import pour les catégories
 import { STATUS_OPTIONS } from '../../assets/constant/statusOption';
-import SearchableList from '../Aside/SearchableList';
+import { SearchableList, SearchableListWithAdd } from '../Aside/SearchableList';
+import { PublisherBookFormItem } from './PublisherForm';
 
 const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
     const [formData, setFormData] = useState({
@@ -14,11 +16,15 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
         description: '',
         price: '',
         status: 'wishlist',
+        category: '', // Ajoute la catégorie dans formData
         ...initialData
     });
 
     const [authorsList, setAuthorsList] = useState([]);
     const [publishersList, setPublishersList] = useState([]);
+    const [categoriesList, setCategoriesList] = useState([]);
+    const [selectedPublisherId, setSelectedPublisherId] = useState('');
+    const [categoryLoading, setCategoryLoading] = useState(false); // État pour le chargement des catégories
 
     useEffect(() => {
         setFormData(prev => ({ ...prev, ...initialData }));
@@ -27,6 +33,13 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
     useEffect(() => {
         fetchAllAuthors().then(setAuthorsList);
         fetchAllPublishers().then(setPublishersList);
+
+        // Ajoute ici la récupération des catégories depuis l'API (à adapter selon ton service)
+        setCategoryLoading(true);
+        fetchCategories().then(list => {
+            setCategoriesList(list);
+            setCategoryLoading(false);
+        });
     }, []);
 
     const handleChange = (e) => {
@@ -51,6 +64,14 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
         }
     };
 
+    // Fonction pour ajouter une nouvelle catégorie
+    const handleAddCategory = async (newCategoryName) => {
+        // Appelle ton service pour ajouter la catégorie en BDD, puis recharge la liste
+        const newCategory = await addCategory(newCategoryName);
+        setCategoriesList(prev => [...prev, newCategory]);
+        setFormData(prev => ({ ...prev, category: newCategory.name }));
+    };
+
     const handleRemoveAuthor = (id) => {
         setFormData(prev => ({
             ...prev,
@@ -63,6 +84,14 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
             ...prev,
             publishers: prev.publishers.filter(p => p.id !== id)
         }));
+    };
+
+    const handlePublisherSelectFromDropdown = (e) => {
+        const publisherId = e.target.value;
+        if (publisherId) {
+            handlePublishersChange(publisherId);
+            setSelectedPublisherId('');
+        }
     };
 
     const handleSubmit = (e) => {
@@ -93,8 +122,6 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
                     </select>
                 </label>
 
-
-
                 <fieldset className="Authors_Search_List Serach_List">
                     <SearchableList
                         title="Auteurs"
@@ -118,6 +145,24 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
                 <fieldset className="details_Books_Feildset">
                     <legend>Détails du livres</legend>
 
+                    {/* Ajout du champ catégorie */}
+                    <fieldset>
+                        <legend>Catégorie</legend>
+                        <SearchableListWithAdd
+                            title="Catégorie"
+                            items={categoriesList}
+                            getLabel={c => c.name}
+                            getValue={c => c.id}
+                            value={formData.category}
+                            onSelect={catId => {
+                                const cat = categoriesList.find(c => c.id === parseInt(catId));
+                                setFormData(prev => ({ ...prev, category: cat ? cat.name : '' }));
+                            }}
+                            onAdd={handleAddCategory}
+                            loading={categoryLoading}
+                        />
+                    </fieldset>
+
                     <fieldset className="description_text_Area">
                         <legend>description</legend>
                         <textarea
@@ -133,8 +178,9 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
                 </fieldset>
 
                 <fieldset className="publishers_Search_List Serach_List">
-                    <legend>edition</legend>
+                    <legend>Édition</legend>
 
+                    {/* 1. Zone de recherche */}
                     <SearchableList
                         title="Éditeurs"
                         items={publishersList}
@@ -142,28 +188,30 @@ const BookForm = ({ initialData = {}, onSubmit, mode = 'create' }) => {
                         getValue={(p) => p.id}
                         onSelect={handlePublishersChange}
                     />
+
+                    {/* 2. Liste des éditeurs sélectionnés au format PublisherBookFormItem */}
                     {formData.publishers.length > 0 && (
                         <ul>
-                            {formData.publishers.map(p => (
-                                <li key={p.id}>
-                                    {p.name}
-                                    <button type="button" onClick={() => handleRemovePublisher(p.id)}>❌</button>
-                                </li>
+                            {formData.publishers.map((p, idx) => (
+                                <PublisherBookFormItem
+                                    key={p.id}
+                                    publisher={p}
+                                    publishersList={publishersList}
+                                    onChange={(field, value) => {
+                                        setFormData(prev => ({
+                                            ...prev,
+                                            publishers: prev.publishers.map((pub, i) =>
+                                                i === idx ? { ...pub, [field]: value } : pub
+                                            )
+                                        }));
+                                    }}
+                                    onRemove={() => handleRemovePublisher(p.id)}
+                                />
                             ))}
                         </ul>
                     )}
 
-                    <label>
-                        Prix (€) :
-                        <input
-                            type="number"
-                            name="price"
-                            value={formData.price}
-                            onChange={handleChange}
-                            min="0"
-                            step="0.01"
-                        />
-                    </label>
+
                 </fieldset>
 
 

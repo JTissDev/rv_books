@@ -19,8 +19,8 @@ import {
 // Import components
 import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
-import { BookItemFull } from '../components/ListItems/BookItem';
-import { AuthorListItem } from '../components/ListItems/Authoritem';
+import { BookItemFull } from '../components/Items/BookItem';
+import { AuthorListItem } from '../components/Items/Authoritem';
 import BookForm from '../components/Forms/BookForm';
 
 // Import styles
