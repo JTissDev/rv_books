@@ -10,7 +10,7 @@ import { fetchAllBooks } from '../services/bookService';
 import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
 import Aside from '../components/Aside/Aside';
-import BooksList from '../components/ItemsList/BooksList';
+import BooksList from '../components/Lists/BooksList';
 
 // Import styles
 import styles from '../styles/sources/pages/HomePage.module.scss';

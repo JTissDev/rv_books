@@ -7,12 +7,10 @@ import React from 'react';
 // Import components
 // Import styles
 
-const PublisherItem = ({ publisher }) => {
+export const PublisherItem = ({ publisher }) => {
     return (
         <div>
             {publisher.name}
         </div>
     );
 };
-
-export default PublisherItem;
